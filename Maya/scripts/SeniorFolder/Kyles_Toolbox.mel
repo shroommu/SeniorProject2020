@@ -1,0 +1,56 @@
+global proc MoveObjects ()
+{
+      string $objectsToMove[] = `ls -sl`;
+      
+      
+      for($items in $objectsToMove)
+     {
+            float $xRand = rand(-30,30);
+            float $zRand = rand(-30,3);
+
+    float $xPos = `getAttr($items + ".tx")`;
+    float $zPos = `getAttr($items + ".tz")`;
+    setAttr($items + ".tx") ($xPos*0 + $xRand);
+    setAttr($items + ".tz") ($zPos*0 + $zRand);
+     }  
+     return;
+}
+
+proc DuplicateObjects ()
+{
+    int $numDups = 20;
+    string $objectsToMove[] = `ls -sl`;
+     
+    for ( $i=0; $i<20; ++$i ){
+        duplicate -rr;
+    } 
+}
+
+// Global Variables
+//
+
+// Window Layouts
+//
+
+window -title "Kyle's Toolbox" -menuBar true -w 300;
+    
+    menu -label "File";
+        menuItem -l "I'm trying to learn here";
+
+    columnLayout -columnOffset both 5.7;
+    
+        frameLayout -collapsable true -label "Parameters"
+        
+            columnLayout;
+            
+                
+                floatFieldGrp -l "xRandRange" -v1 $xRand;
+                floatFieldGrp -l "zRandRange" -v1 $zRand;
+                button -l "RanDoMize" -c MoveObjects;
+                button -l "Duplicatatize" -c DuplicateObjects;
+                
+            setParent ..;
+        setParent ..;
+     
+showWindow;
+

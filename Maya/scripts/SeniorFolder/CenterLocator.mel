@@ -1,0 +1,40 @@
+global proc CenterLocator () 
+{
+    //select object
+    string $sels[] = `ls -sl`;
+    //duplicate selecitons and place them in a temp variable
+    string $temp[] = `duplicate -rr $sels`;
+    
+    //check if there are more then one objects selected.
+    //if so, combine them into a single object.
+    if (size($temp) > 1);
+    $temp = `polyUnite $temp`;
+    
+    //create a float to store our bounding box
+    float $bbPos[];
+    //query the bounding box min and max values for each object
+    //$bbPos = assign them to the bounding box values
+    
+    $bbPos = `xform -q -boundingBox $temp`;
+    //delete our temp duplicate
+    delete -constructionHistory $temp[0]
+    delete $temp[0]
+    
+    //create a float to store our xform values
+    //find the center of the X y and Z coordinates of the bounding box
+    //using the formula: ((# + #) / 2) = center value
+    float $xPos, $yPos, $zPos;
+    $xPos = ($bbPos[0] + $bbPos[3]) / 2;
+    $yPos = ($bbPos[1] + $bbPos[4]) / 2;
+    $zPos = ($bbPos[2] + $bbPos[5]) / 2;
+    
+    //create a string object that holds the position of the locator to create
+   //THE LOCATOR IS CREATED AT 000. YOU NEED TO USE XFORM TO CHANGE THE PIVOT POINT
+   
+   string $loc[] = `spaceLocator -position 0 0 0`;
+   //Move the xform of the object
+   xform -translation $xPos $yPos $zPos -worldSpace -absolute $loc[0];
+    
+}
+
+CenterLocator ();
