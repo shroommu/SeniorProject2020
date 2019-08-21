@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/AlexaScene.unity
-=======
 - path: Assets/Scenes/WhiteBox_01.unity
->>>>>>> master
   isLoaded: 1
   isActive: 1
   isSubScene: 0
