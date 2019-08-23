@@ -47004,9 +47004,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a427ffc443556b42a53cceb57d5a690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1385958851}
-  offset: {x: 0, y: 0, z: 0}
-  rotateAmount: 1
+  target: {fileID: 1385958851}
+  distance: 5
+  xSpeed: 120
+  ySpeed: 120
+  yMinLimit: 0
+  yMaxLimit: 60
 --- !u!1 &1294357330
 GameObject:
   m_ObjectHideFlags: 0
