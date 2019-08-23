@@ -13,6 +13,8 @@ public class InputManager : MonoBehaviour {
 
 	private float verticalSpeed = 0;
 	private float horizontalSpeed = 0;
+	private float vertical2Speed = 0;
+	private float horizontal2Speed = 0;
 
 	private bool canGetInput = true;
 
@@ -45,6 +47,8 @@ public class InputManager : MonoBehaviour {
 		{
 			verticalSpeed = Input.GetAxis("Vertical");
 			horizontalSpeed = Input.GetAxis("Horizontal");
+			vertical2Speed = Input.GetAxis("Mouse Y");
+			horizontal2Speed = Input.GetAxis("Mouse X");
 
 			if(Input.GetMouseButtonDown(0))
 			{
@@ -82,5 +86,15 @@ public class InputManager : MonoBehaviour {
 	public float GetHorizontal()
 	{
 		return horizontalSpeed;
+	}
+
+	public float GetVertical2()
+	{
+		return vertical2Speed;
+	}
+
+	public float GetHorizontal2()
+	{
+		return horizontal2Speed;
 	}
 }
