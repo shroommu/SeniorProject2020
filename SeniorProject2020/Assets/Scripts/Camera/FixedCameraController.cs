@@ -5,23 +5,8 @@ using UnityEngine;
 public class FixedCameraController : MonoBehaviour {
 
 	public GameObject target;
-	public Vector3 offset;
+	public Transform cameraPos;
 
-	public bool canFollow = true;
-
-	private void Start()
-	{
-		offset = target.transform.position - transform.position;
-		StartCoroutine(Follow());
-	}
-
-	IEnumerator Follow()
-	{	
-		while(canFollow)
-		{
-			transform.position = new Vector3(target.transform.position.x - offset.x, target.transform.position.y - offset.y, target.transform.position.z - offset.z);
-			yield return null;
-		}
-	}
+	
 
 }

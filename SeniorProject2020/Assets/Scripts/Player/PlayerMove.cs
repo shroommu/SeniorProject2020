@@ -19,6 +19,8 @@ public class PlayerMove : MonoBehaviour {
 	//private PlayerAnim playerAnim;
 	private Rigidbody rigidbody;
 
+	public InputManager inputManager;
+
 	void Start ()
 	{
 		baseSpeed = speed;
@@ -32,11 +34,10 @@ public class PlayerMove : MonoBehaviour {
 		while(canMove)
 		{
 			//calculate new transform.position
-			Vector3 newPos = Vector3.Normalize(new Vector3(InputManager.instance.GetHorizontal(), 0, InputManager.instance.GetVertical())) * speed;
-            //print (newPos);
+			Vector3 newPos = Vector3.Normalize(new Vector3(inputManager.GetHorizontal(), 0, inputManager.GetVertical())) * speed;
 
 			//rotate character
-			if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+			if(inputManager.GetHorizontal() != 0 || inputManager.GetVertical() != 0)
 			{
 				transform.rotation = Quaternion.LookRotation(newPos);
 			}

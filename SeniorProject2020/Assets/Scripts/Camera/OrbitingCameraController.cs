@@ -8,6 +8,7 @@ using UnityEngine;
 public class OrbitingCameraController : MonoBehaviour
 {
     public Transform target;
+    public InputManager inputManager;
     public float distance = 5.0f;
     public float xSpeed = 120.0f;
     public float ySpeed = 120.0f;
@@ -32,8 +33,8 @@ public class OrbitingCameraController : MonoBehaviour
     {
         if (target) 
         {
-            x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
-            y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+            x += inputManager.GetHorizontal2();
+            y -= inputManager.GetVertical2();
  
             y = ClampAngle(y, yMinLimit, yMaxLimit);
  
