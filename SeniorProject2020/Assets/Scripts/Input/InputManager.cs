@@ -6,10 +6,8 @@ using RoboRyanTron.Unite2017.Events;
 
 public class InputManager : MonoBehaviour {
 
-	//public static InputManager instance;
 
 	public SO_InputType currentInputType;
-	//public SO_InputType[] inputTypes;
 
 	private float verticalSpeed = 0;
 	private float horizontalSpeed = 0;
@@ -24,17 +22,6 @@ public class InputManager : MonoBehaviour {
 	public GameEvent leftShiftUpEvent;
 	public GameEvent spaceDownEvent;
 
-	void Awake()
-	{
-		// if(instance == null)
-		// {
-		// 	instance = this;
-		// }
-		// else if(instance != this)
-		// {
-		// 	Destroy(this);
-		// }
-	}
 	
 	void Start()
 	{
@@ -45,11 +32,10 @@ public class InputManager : MonoBehaviour {
 	{
 		while(canGetInput)
 		{
-			//verticalSpeed = Input.GetAxis("P1 LJoy V");
-			horizontalSpeed = Input.GetAxis("Con1 JoyL Horiz");
-			print(horizontalSpeed);
-			//vertical2Speed = Input.GetAxis("P1 RJoy V");
-			//horizontal2Speed = Input.GetAxis("P1 RJoy H");
+			horizontalSpeed = Input.GetAxis(currentInputType.leftJoystickXName);
+			verticalSpeed = Input.GetAxis(currentInputType.leftJoystickYName);
+			horizontal2Speed = Input.GetAxis(currentInputType.rightJoystickXName);
+			vertical2Speed = Input.GetAxis(currentInputType.rightJoystickYName);
 
 			if(Input.GetMouseButtonDown(0))
 			{
@@ -70,7 +56,7 @@ public class InputManager : MonoBehaviour {
 				leftShiftUpEvent.Raise();
 			}
 
-			if(Input.GetKeyDown(KeyCode.Space))
+			if(Input.GetButton(currentInputType.aButtonName))
 			{
 				spaceDownEvent.Raise();
 			}
