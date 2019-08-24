@@ -1,44 +1,59 @@
-﻿using System.Collections;
+﻿//Source code: https://wiki.unity3d.com/index.php/MouseOrbitImproved
+//Modifications by Alexa Kruckenberg
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class OrbitingCameraController : MonoBehaviour
 {
-
-    public Transform player;
-    public Vector3 offset;
-    public float rotateAmount = 1;
-
-    public void Start()
+    public Transform target;
+    public InputManager inputManager;
+    public float distance = 5.0f;
+    public float xSpeed = 120.0f;
+    public float ySpeed = 120.0f;
+ 
+    public float yMinLimit = -20f;
+    public float yMaxLimit = 80f;
+ 
+    private Rigidbody rigidbody;
+ 
+    float x = 0.0f;
+    float y = 0.0f;
+ 
+    // Use this for initialization
+    void Start () 
     {
-        offset = transform.position - player.transform.position;
+        Vector3 angles = transform.eulerAngles;
+        x = angles.y;
+        y = angles.x;
     }
-
-    public void Update()
+ 
+    void LateUpdate () 
     {
-        OrbitCamera();
-    }
+        if (target) 
+        {
+            x += inputManager.GetHorizontal2();
+            y -= inputManager.GetVertical2();
+ 
+            y = ClampAngle(y, yMinLimit, yMaxLimit);
+ 
+            Quaternion rotation = Quaternion.Euler(y, x, 0);
 
-    public void OrbitCamera()
+            Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+            Vector3 position = rotation * negDistance + target.position;
+ 
+            transform.rotation = rotation;
+            transform.position = position;
+        }
+    }
+ 
+    public static float ClampAngle(float angle, float min, float max)
     {
-        float inputX = InputManager.instance.GetHorizontal2();
-        float inputY = InputManager.instance.GetVertical2();
-
-       // Quaternion newRotX = Quaternion.AngleAxis(inputX * rotateAmount, Vector3.up);
-        //Quaternion newRotY = Quaternion.AngleAxis(inputY * rotateAmount, Vector3.forward);
-       // Quaternion newRot = newRotX * newRotY;
-        Quaternion newRot = Quaternion.AngleAxis(inputX * rotateAmount, Vector3.up);
-        offset = newRot * offset;
-
-        Vector3 newPos = offset + player.transform.position;
-        transform.position = newPos;
-        transform.LookAt(player);
-
-        /*Vector3 newPos = transform.position;
-        newPos.x = Mathf.Cos(inputX * (Mathf.PI / 180)) * Mathf.Sin(inputX * (Mathf.PI / 180)) * offset + player.position.x;
-        newPos.y = Mathf.Cos(inputY * (Mathf.PI / 180)) * Mathf.Sin(inputY * (Mathf.PI / 180)) * offset + player.position.y;
-        transform.position = newPos;
-        transform.LookAt(player);*/
+        if (angle < -360F)
+            angle += 360F;
+        if (angle > 360F)
+            angle -= 360F;
+        return Mathf.Clamp(angle, min, max);
     }
-
 }

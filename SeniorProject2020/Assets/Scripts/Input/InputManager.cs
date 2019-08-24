@@ -6,9 +6,9 @@ using RoboRyanTron.Unite2017.Events;
 
 public class InputManager : MonoBehaviour {
 
-	public static InputManager instance;
+	//public static InputManager instance;
 
-	//public SO_InputType currentInputType;
+	public SO_InputType currentInputType;
 	//public SO_InputType[] inputTypes;
 
 	private float verticalSpeed = 0;
@@ -26,14 +26,14 @@ public class InputManager : MonoBehaviour {
 
 	void Awake()
 	{
-		if(instance == null)
-		{
-			instance = this;
-		}
-		else if(instance != this)
-		{
-			Destroy(this);
-		}
+		// if(instance == null)
+		// {
+		// 	instance = this;
+		// }
+		// else if(instance != this)
+		// {
+		// 	Destroy(this);
+		// }
 	}
 	
 	void Start()
@@ -45,10 +45,11 @@ public class InputManager : MonoBehaviour {
 	{
 		while(canGetInput)
 		{
-			verticalSpeed = Input.GetAxis("Vertical");
-			horizontalSpeed = Input.GetAxis("Horizontal");
-			vertical2Speed = Input.GetAxis("Mouse Y");
-			horizontal2Speed = Input.GetAxis("Mouse X");
+			//verticalSpeed = Input.GetAxis("P1 LJoy V");
+			horizontalSpeed = Input.GetAxis("Con1 JoyL Horiz");
+			print(horizontalSpeed);
+			//vertical2Speed = Input.GetAxis("P1 RJoy V");
+			//horizontal2Speed = Input.GetAxis("P1 RJoy H");
 
 			if(Input.GetMouseButtonDown(0))
 			{
