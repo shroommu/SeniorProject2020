@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class ChangeCamera : MonoBehaviour
 {
-    public GameObject fixedCamera;
-    public bool isActive;
+    public GameObject fixedCameraPos;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerData>())
         {
-            isActive = !isActive;
+            other.GetComponent<PlayerData>().usingOrbitCamera = !other.GetComponent<PlayerData>().usingOrbitCamera;
         }
 
-        if (isActive)
+        /* if (isActive)
         {
             fixedCamera.SetActive(true);
             other.GetComponent<PlayerData>().orbitCamera.SetActive(false);
@@ -23,7 +22,7 @@ public class ChangeCamera : MonoBehaviour
         {
             fixedCamera.SetActive(false);
             other.GetComponent<PlayerData>().orbitCamera.SetActive(true);
-        }
+        }*/
     }
 
 }

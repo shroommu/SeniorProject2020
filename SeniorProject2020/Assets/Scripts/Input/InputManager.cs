@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour {
 	private float horizontalSpeed = 0;
 	private float vertical2Speed = 0;
 	private float horizontal2Speed = 0;
+	public bool l3pressed = false;
 
 	private bool canGetInput = true;
 
@@ -47,13 +48,26 @@ public class InputManager : MonoBehaviour {
 				rmbEvent.Raise();
 			}
 
-			if(Input.GetKey(KeyCode.LeftShift))
+			if(Input.GetButtonDown(currentInputType.l3ButtonName))
 			{
-				leftShiftEvent.Raise();
+				l3pressed = !l3pressed;
+				print(l3pressed);
+
+				if(l3pressed)
+				{
+					leftShiftEvent.Raise();
+					print("sprinting");
+				}
+				else
+				{
+					leftShiftUpEvent.Raise();
+					print("walking");
+				}
+				
 			}
 			if(Input.GetKeyUp(KeyCode.LeftShift))
 			{
-				leftShiftUpEvent.Raise();
+				
 			}
 
 			if(Input.GetButton(currentInputType.aButtonName))
