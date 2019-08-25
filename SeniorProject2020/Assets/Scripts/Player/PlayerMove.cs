@@ -16,6 +16,8 @@ public class PlayerMove : MonoBehaviour {
 	public bool isJumping = false;
 	public bool isGrounded = true;
 
+	public GameObject orbitCamera;
+
 	//private PlayerAnim playerAnim;
 	private Rigidbody rigidbody;
 
@@ -27,6 +29,7 @@ public class PlayerMove : MonoBehaviour {
 		//playerAnim = GetComponent<PlayerAnim>();
 		rigidbody = GetComponent<Rigidbody>();
 		StartCoroutine(Move());
+		orbitCamera = GetComponent<PlayerData>().orbitCamera;
 	}
 
 	IEnumerator Move()
@@ -35,6 +38,8 @@ public class PlayerMove : MonoBehaviour {
 		{
 			//calculate new transform.position
 			Vector3 newPos = Vector3.Normalize(new Vector3(inputManager.GetHorizontal(), 0, inputManager.GetVertical())) * speed;
+			newPos = orbitCamera.transform.TransformDirection(newPos);
+            newPos.y = 0;
 
 			//rotate character
 			if(inputManager.GetHorizontal() != 0 || inputManager.GetVertical() != 0)
