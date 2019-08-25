@@ -150,10 +150,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentInputType: {fileID: 11400000, guid: fb6d4adeb4686db4dab3861e0959ef26, type: 2}
+  l3pressed: 0
   lmbEvent: {fileID: 0}
   rmbEvent: {fileID: 0}
-  leftShiftEvent: {fileID: 0}
-  leftShiftUpEvent: {fileID: 0}
+  leftShiftEvent: {fileID: 11400000, guid: b00ce4d25f4aba74f83a55dde58d10c6, type: 2}
+  leftShiftUpEvent: {fileID: 11400000, guid: 2255b149013c85e4485955129d723c7a, type: 2}
   spaceDownEvent: {fileID: 11400000, guid: c90f35e5f1f77134880b6384f461adba, type: 2}
 --- !u!4 &13236487
 Transform:
@@ -49242,9 +49243,12 @@ GameObject:
   - component: {fileID: 1385958849}
   - component: {fileID: 1385958848}
   - component: {fileID: 1385958847}
+  - component: {fileID: 1385958856}
   - component: {fileID: 1385958846}
   - component: {fileID: 1385958852}
   - component: {fileID: 1385958853}
+  - component: {fileID: 1385958854}
+  - component: {fileID: 1385958855}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Untagged
@@ -49275,7 +49279,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385958845}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef033d9ba4a0ffd4b8ad22826479d62d, type: 3}
   m_Name: 
@@ -49403,6 +49407,85 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbitCamera: {fileID: 1284613244}
+  usingOrbitCamera: 1
+--- !u!114 &1385958854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385958845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab7e3322ab36e0340bcd4dd974044380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: b224074609afb4a4eb4d6efb5c23167f, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1385958847}
+        m_MethodName: ChangeToSprintSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1385958855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385958845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab7e3322ab36e0340bcd4dd974044380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 36e7c7250cb978649a3daa8da6e4276d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1385958847}
+        m_MethodName: ChangeToRegularSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1385958856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385958845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48d62ef2b6e00f84bb514f3299fcc7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMove: 1
+  velocity: 0
+  speed: 375
+  jumpSpeed: 7.5
+  isJumping: 0
+  isGrounded: 1
+  orbitCamera: {fileID: 1284613244}
+  inputManager: {fileID: 1679060714}
 --- !u!1 &1436802102
 GameObject:
   m_ObjectHideFlags: 0
@@ -65762,10 +65845,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentInputType: {fileID: 11400000, guid: 7cb3aaf3b2cc6fe4cbe2277251236b69, type: 2}
+  l3pressed: 0
   lmbEvent: {fileID: 0}
   rmbEvent: {fileID: 0}
-  leftShiftEvent: {fileID: 0}
-  leftShiftUpEvent: {fileID: 0}
+  leftShiftEvent: {fileID: 11400000, guid: b224074609afb4a4eb4d6efb5c23167f, type: 2}
+  leftShiftUpEvent: {fileID: 11400000, guid: 36e7c7250cb978649a3daa8da6e4276d, type: 2}
   spaceDownEvent: {fileID: 11400000, guid: d2e3405e247023d4496e8e355ce1a0f6, type: 2}
 --- !u!4 &1679060715
 Transform:
@@ -67137,6 +67221,8 @@ GameObject:
   - component: {fileID: 1853695758}
   - component: {fileID: 1853695757}
   - component: {fileID: 1853695756}
+  - component: {fileID: 1853695764}
+  - component: {fileID: 1853695765}
   m_Layer: 0
   m_Name: Player (2)
   m_TagString: Untagged
@@ -67157,6 +67243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbitCamera: {fileID: 1284613244}
+  usingOrbitCamera: 1
 --- !u!114 &1853695757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67295,6 +67382,64 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1853695764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853695755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab7e3322ab36e0340bcd4dd974044380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: b00ce4d25f4aba74f83a55dde58d10c6, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1853695759}
+        m_MethodName: ChangeToSprintSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1853695765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853695755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab7e3322ab36e0340bcd4dd974044380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 2255b149013c85e4485955129d723c7a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1853695759}
+        m_MethodName: ChangeToRegularSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!43 &1897440073
 Mesh:
   m_ObjectHideFlags: 0
@@ -80189,6 +80334,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CameraTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563281111862273017, guid: 8421357b3670abc4ca59fbddf8f62711,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2563281111862273012, guid: 8421357b3670abc4ca59fbddf8f62711,
         type: 3}

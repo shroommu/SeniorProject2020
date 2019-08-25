@@ -5,5 +5,5 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     public GameObject orbitCamera;
-    
+    public bool usingOrbitCamera = true;
 }
