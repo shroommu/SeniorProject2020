@@ -106,10 +106,9 @@ GameObject:
   - component: {fileID: 2031998270095206035}
   - component: {fileID: 2031998270095206116}
   - component: {fileID: 2031998270095206034}
-  - component: {fileID: 2031998270095206120}
   - component: {fileID: 2031998270095206121}
-  - component: {fileID: 2031998270095206122}
-  - component: {fileID: 2031998270095206123}
+  - component: {fileID: 7775414486263351786}
+  - component: {fileID: 1977150175762418323}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Untagged
@@ -206,12 +205,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMove: 1
   velocity: 0
-  speed: 375
-  jumpSpeed: 7.5
+  speed: 250
+  jumpSpeed: 2
   isJumping: 0
   isGrounded: 1
   orbitCamera: {fileID: 0}
-  inputManager: {fileID: 0}
+  rb: {fileID: 2031998270095206034}
+  inputManager: {fileID: 7775414486263351786}
 --- !u!114 &2031998270095206116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,12 +226,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMove: 1
   velocity: 0
-  speed: 375
-  jumpSpeed: 7.5
+  speed: 250
+  jumpSpeed: 2
   isJumping: 0
   isGrounded: 1
   orbitCamera: {fileID: 0}
-  inputManager: {fileID: 0}
+  rb: {fileID: 2031998270095206034}
+  inputManager: {fileID: 7775414486263351786}
 --- !u!54 &2031998270095206034
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -248,35 +249,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &2031998270095206120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031998270095206033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab7e3322ab36e0340bcd4dd974044380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: d2e3405e247023d4496e8e355ce1a0f6, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2031998270095206035}
-        m_MethodName: Jump
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &2031998270095206121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +264,7 @@ MonoBehaviour:
   orbitCamera: {fileID: 0}
   orbitCameraRearPos: {fileID: 2031998270680780395}
   usingOrbitCamera: 1
---- !u!114 &2031998270095206122
+--- !u!114 &7775414486263351786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -301,11 +273,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 2031998270095206033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab7e3322ab36e0340bcd4dd974044380, type: 3}
+  m_Script: {fileID: 11500000, guid: 86ec380d238e5384397c880523333448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: b224074609afb4a4eb4d6efb5c23167f, type: 2}
-  Response:
+  currentInputType: {fileID: 11400000, guid: 7cb3aaf3b2cc6fe4cbe2277251236b69, type: 2}
+  l3pressed: 0
+  attack1Event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1977150175762418323}
+        m_MethodName: Stab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  attack2Event:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  sprintEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2031998270095206035}
@@ -319,22 +313,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2031998270095206116}
+        m_MethodName: ChangeToSprintSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &2031998270095206123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031998270095206033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab7e3322ab36e0340bcd4dd974044380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 36e7c7250cb978649a3daa8da6e4276d, type: 2}
-  Response:
+  walkEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2031998270095206035}
@@ -348,8 +340,58 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2031998270095206116}
+        m_MethodName: ChangeToRegularSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  jumpEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2031998270095206035}
+        m_MethodName: Jump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2031998270095206116}
+        m_MethodName: Jump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1977150175762418323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031998270095206033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c434ea0f014d9047a41e94300402b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2031998270680780395
 GameObject:
   m_ObjectHideFlags: 0

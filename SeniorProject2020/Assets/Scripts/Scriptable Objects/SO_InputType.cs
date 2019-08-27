@@ -11,6 +11,7 @@ public class SO_InputType : ScriptableObject
     public string rightJoystickXName;
     public string rightJoystickYName;
     public string aButtonName;
+    public string bButtonName;
     public string l3ButtonName;
 
 

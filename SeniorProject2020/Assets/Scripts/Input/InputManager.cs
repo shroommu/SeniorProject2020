@@ -17,11 +17,11 @@ public class InputManager : MonoBehaviour {
 
 	private bool canGetInput = true;
 
-	public GameEvent lmbEvent;
-	public GameEvent rmbEvent;
-	public GameEvent leftShiftEvent;
-	public GameEvent leftShiftUpEvent;
-	public GameEvent spaceDownEvent;
+	public UnityEvent attack1Event;
+	public UnityEvent attack2Event;
+	public UnityEvent sprintEvent;
+	public UnityEvent walkEvent;
+	public UnityEvent jumpEvent;
 
 	
 	void Start()
@@ -38,15 +38,15 @@ public class InputManager : MonoBehaviour {
 			horizontal2Speed = Input.GetAxis(currentInputType.rightJoystickXName);
 			vertical2Speed = Input.GetAxis(currentInputType.rightJoystickYName);
 
-			if(Input.GetMouseButtonDown(0))
+			if(Input.GetButtonDown(currentInputType.bButtonName))
 			{
-				lmbEvent.Raise();
+				attack1Event.Invoke();
 			}
 
-			if(Input.GetMouseButtonDown(1))
-			{
-				rmbEvent.Raise();
-			}
+			// if(Input.GetMouseButtonDown(1))
+			// {
+			// 	rmbEvent.Invoke();
+			// }
 
 			if(Input.GetButtonDown(currentInputType.l3ButtonName))
 			{
@@ -55,24 +55,20 @@ public class InputManager : MonoBehaviour {
 
 				if(l3pressed)
 				{
-					leftShiftEvent.Raise();
+					sprintEvent.Invoke();
 					print("sprinting");
 				}
 				else
 				{
-					leftShiftUpEvent.Raise();
+					walkEvent.Invoke();
 					print("walking");
 				}
-				
-			}
-			if(Input.GetKeyUp(KeyCode.LeftShift))
-			{
 				
 			}
 
 			if(Input.GetButton(currentInputType.aButtonName))
 			{
-				spaceDownEvent.Raise();
+				jumpEvent.Invoke();
 			}
 
 			yield return null;
