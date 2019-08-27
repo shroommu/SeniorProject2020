@@ -43,10 +43,10 @@ public class InputManager : MonoBehaviour {
 				attack1Event.Invoke();
 			}
 
-			// if(Input.GetMouseButtonDown(1))
-			// {
-			// 	rmbEvent.Invoke();
-			// }
+			if(Input.GetButtonDown(currentInputType.xButtonName))
+			{
+				attack2Event.Invoke();
+			}
 
 			if(Input.GetButtonDown(currentInputType.l3ButtonName))
 			{

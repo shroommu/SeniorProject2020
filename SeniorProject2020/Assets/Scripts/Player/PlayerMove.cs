@@ -27,8 +27,6 @@ public class PlayerMove : MonoBehaviour {
 	{
 		baseSpeed = speed;
 		//playerAnim = GetComponent<PlayerAnim>();
-		//rb = GetComponent<Rigidbody>();
-		print(rb);
 		StartCoroutine(Move());
 		orbitCamera = GetComponent<PlayerData>().orbitCamera;
 	}
