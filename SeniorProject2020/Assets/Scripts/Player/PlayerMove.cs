@@ -19,7 +19,7 @@ public class PlayerMove : MonoBehaviour {
 	public GameObject orbitCamera;
 
 	//private PlayerAnim playerAnim;
-	private Rigidbody rigidbody;
+	public Rigidbody rb;
 
 	public InputManager inputManager;
 
@@ -27,7 +27,8 @@ public class PlayerMove : MonoBehaviour {
 	{
 		baseSpeed = speed;
 		//playerAnim = GetComponent<PlayerAnim>();
-		rigidbody = GetComponent<Rigidbody>();
+		//rb = GetComponent<Rigidbody>();
+		print(rb);
 		StartCoroutine(Move());
 		orbitCamera = GetComponent<PlayerData>().orbitCamera;
 	}
@@ -52,9 +53,9 @@ public class PlayerMove : MonoBehaviour {
 			}
 
 			//move to new position
-			rigidbody.AddForce(newPos);
+			rb.AddForce(newPos);
 
-			if(rigidbody.velocity.magnitude > 0.1)
+			if(rb.velocity.magnitude > 0.1)
 			{
 				//playerAnim.Walk();
 			}
@@ -64,7 +65,7 @@ public class PlayerMove : MonoBehaviour {
 			}
 
             //Resets velocity to 0 each frame so character doesn't slide around
-            rigidbody.velocity = new Vector3(0, rigidbody.velocity.y, 0);
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
 
 			yield return null;
 		}
@@ -84,7 +85,7 @@ public class PlayerMove : MonoBehaviour {
 	{
 		if(isGrounded)
 		{
-			rigidbody.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
+			rb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
 			isGrounded = false;
 			//playerAnim.Jump();
 		}

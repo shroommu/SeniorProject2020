@@ -16,8 +16,6 @@ public class OrbitingCameraController : MonoBehaviour
     public float yMinLimit = -20f;
     public float yMaxLimit = 80f;
  
-    private Rigidbody rigidbody;
- 
     float x = 0.0f;
     float y = 0.0f;
  
