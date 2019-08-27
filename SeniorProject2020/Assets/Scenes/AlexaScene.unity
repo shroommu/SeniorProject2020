@@ -79940,6 +79940,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7775414486263351786, guid: 4092ffbf17e8dd345a9e556165729d26,
+        type: 3}
+      propertyPath: attack1Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 7775414486263351786, guid: 4092ffbf17e8dd345a9e556165729d26,
+        type: 3}
+      propertyPath: currentInputType
+      value: 
+      objectReference: {fileID: 11400000, guid: 589f2c5088c0d3342ae3a40f08a6dd8b,
+        type: 2}
     - target: {fileID: 2031998270095206127, guid: 4092ffbf17e8dd345a9e556165729d26,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -80010,11 +80021,6 @@ PrefabInstance:
       propertyPath: orbitCamera
       value: 
       objectReference: {fileID: 1284613244}
-    - target: {fileID: 7775414486263351786, guid: 4092ffbf17e8dd345a9e556165729d26,
-        type: 3}
-      propertyPath: attack1Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Attack
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4092ffbf17e8dd345a9e556165729d26, type: 3}
 --- !u!1001 &7145761335634966260
