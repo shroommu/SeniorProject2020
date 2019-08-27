@@ -1,0 +1,17 @@
+global proc MoveObjectsRandomly ()
+{
+      string $objectsToMove[] = `ls -sl`;
+      for($items in $objectsToMove)
+     {
+            float $xRand = rand(-30,30);
+            float $zRand = rand(-30,3);
+
+    float $xPos = `getAttr($items + ".tx")`;
+    float $zPos = `getAttr($items + ".tz")`;
+    setAttr($items + ".tx") ($xPos*0 + $xRand);
+    setAttr($items + ".tz") ($zPos*0 + $zRand);
+     }  
+}
+
+
+

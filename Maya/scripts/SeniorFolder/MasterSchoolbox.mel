@@ -1,0 +1,685 @@
+global proc Master_Schoolbox() 
+{
+            // window declaration //
+    if ( `window -exists kp_schoolBox` )
+deleteUI kp_schoolBox;
+
+    //Variables
+    
+    int $boxWidth = 100;
+
+    window 
+	-t "schoolBox"
+	-w ($boxWidth + 10)
+	-mxb off
+	-mnb on
+	-resizeToFitChildren off
+	-sizeable on
+	-menuBar true
+	kp_schoolBox;
+        //------------------------------Control Creation/Color Change Window -----------------------------------
+    tabLayout controlTab;
+        string $colorTab = `columnLayout -width (250)`;
+        
+            gridLayout -width (250) -height (75) -numberOfRows 4 -numberOfColumns 8 -cellWidthHeight 30 20;
+
+            //Color values sourced from Lester Bank's am_dock Rigging dock script
+		
+			iconTextButton -bgc 0 0.016 0.373 -rpt true -command "RecolorSelected(0)" ;
+			iconTextButton -bgc .000 .000 .000 -rpt true -command "RecolorSelected(1)" ;
+			iconTextButton -bgc .247 .247 .247 -rpt true -command "RecolorSelected(2)";
+			iconTextButton -bgc .498 .498 .498 -rpt true -command "RecolorSelected(3)" ;
+			iconTextButton -bgc 0.608 0 0.157 -rpt true -command "RecolorSelected(4)";
+			iconTextButton -bgc 0 0 1 -rpt true -command "RecolorSelected(6)" ;
+			iconTextButton -bgc 0 0.275 0.094 -rpt true -command "RecolorSelected(7)" ;
+			iconTextButton -bgc 0.145 0 0.263 -rpt true -command "RecolorSelected(8)";
+			iconTextButton -bgc 0.78 0 0.78 -rpt true -command "RecolorSelected(9)";
+			iconTextButton -bgc 0.537 0.278 0.2 -rpt true -command "RecolorSelected(10)" ;
+			iconTextButton -bgc 0.243 0.133 0.122 -rpt true -command "RecolorSelected(11)"; 
+			iconTextButton -bgc 0.6 0.145 0 -rpt true -command "RecolorSelected(12)";
+			iconTextButton -bgc 1 0 0 -rpt true -command "RecolorSelected(13)" ;
+			iconTextButton -bgc 0 1 0 -rpt true  -command "RecolorSelected(14)" ;
+			iconTextButton -bgc 0 0.255 0.6 -rpt true -command "RecolorSelected(15)" ;
+			iconTextButton -bgc 1 1 1 -rpt true -command "RecolorSelected(16)" ;
+			iconTextButton -bgc 1 1 0 -rpt true -command "RecolorSelected(17)" ;
+			iconTextButton -bgc 0.388 0.863 1 -rpt true -command "RecolorSelected(18)" ;
+			iconTextButton -bgc 0.263 1 0.635 -rpt true -command "RecolorSelected(19)" ;
+			iconTextButton -bgc 1 0.686 0.686 -rpt true -command "RecolorSelected(20)" ;
+			iconTextButton -bgc 0.89 0.675 0.475 -rpt true -command "RecolorSelected(21)" ;
+			iconTextButton -bgc 1 1 0.384 -rpt true -command "RecolorSelected(22)";
+			iconTextButton -bgc 0 0.6 0.325 -rpt true -command "RecolorSelected(23)";
+			iconTextButton -bgc 0.627 0.412 0.188 -rpt true -command "RecolorSelected(24)"; 
+			iconTextButton -bgc 0.62 0.627 0.188 -rpt true -command "RecolorSelected(25)";
+			iconTextButton -bgc 0.408 0.627 0.188 -rpt true -command "RecolorSelected(26)";
+			iconTextButton -bgc 0.188 0.627 0.365 -rpt true -command "RecolorSelected(27)" ;
+			iconTextButton -bgc 0.188 0.627 0.627 -rpt true -command "RecolorSelected(28)" ;
+			iconTextButton -bgc 0.188 0.404 0.627 -rpt true -command "RecolorSelected(29)" ;
+			iconTextButton -bgc 0.435 0.188 0.627 -rpt true -command "RecolorSelected(30)";
+			iconTextButton -label "T" -style "iconAndTextHorizontal" -bgc .498 .498 .498 -rpt true  -command "RecolorSelected(31)";
+			iconTextButton -label "R" -style "iconAndTextHorizontal" -bgc 0 0 0 -rpt true -command "RecolorSelected(32)";
+			
+
+            setParent ..; 
+            
+            rowLayout -w (250) -numberOfColumns 3;
+                columnLayout;
+                button -l "Circle" -command "CreateControlShape(0)";
+                button -l "Diamond" -command "CreateControlShape(1)";
+                setParent..;
+                
+                columnLayout;
+                button -l "Gear" -command "CreateControlShape(2)";
+                button -l "Pin" -command "CreateControlShape(3)";
+                setParent..;
+                
+                columnLayout;
+                button -l "Star" -command "CreateControlShape(4)";
+                button -l "Null";
+                setParent..;
+            setParent..;
+        setParent..;
+			
+        
+
+        
+                //----------------------------  AutoRigSetups ----------------------------
+        
+        string $autoRigSetups = `columnLayout -w 300`;
+            frameLayout -w 300 -collapsable on;
+                gridLayout -cr 1 -ch 100 -cw 100;
+                button -l "Stretchy IK setup";
+                button -l "FK Rig Setup";
+                button -l "Spline Curve Setup";
+                setParent..;               
+            setParent..;
+        setParent..;       
+        
+        //----------------------------  Rename Objects ----------------------------
+        
+		string $objectRenamer = `columnLayout`;
+		    rowLayout -nc 2;
+    		    textField renameText;
+    		    button -l "Rename" -command "RenamerLoop(RnTextSwitch())";
+    		setParent..;
+		setParent..;
+		
+		/// ---------------------------- Move and Manipulate Objects ----------------------------
+		
+		string $objectManipulators = `columnLayout -w 20`;
+		    frameLayout -collapsable on;
+    		    rowLayout -nc 3;
+    		    // column 1
+        		    rowLayout -nc 2;
+            		    text -l "xMin";
+            		    floatField randMoveXMin;
+            		setParent..;  
+            		//    column 2     		
+            		rowLayout -nc 2;
+            		    text -l "yMin";
+            		    floatField randMoveYMin;
+            		setParent..;
+            		// column 3
+            		rowLayout -nc 2;
+            		    text -l "zMin";
+            		    floatField randMoveZMin;
+            		setParent..;
+                setParent..;
+                
+                rowLayout -nc 3;
+    		    // column 1
+        		    rowLayout -nc 2;
+            		    text -l "xMax";
+            		    floatField randMoveXMax;
+            		setParent..;  
+            		//    column 2     		
+            		rowLayout -nc 2;
+            		    text -l "yMax";
+            		    floatField randMoveYMax;
+            		setParent..;
+            		// column 3
+            		rowLayout -nc 2;
+            		    text -l "zMax";
+            		    floatField randMoveZMax;
+            		setParent..;
+                setParent..;
+    
+                button -l "MoveObjects" -command "MoveObjectsRandomly()";
+                
+                setParent..;
+             setParent..;
+		setParent..;
+		    
+
+            //edit all the tabs in the layout
+        				
+            tabLayout -edit 
+                -tabLabel $colorTab "Control Colors"
+                -tabLabel $autoRigSetups "--UNDER CONSTRUCTION--"
+                -tabLabel $objectRenamer "Object Renamer"
+                -tabLabel $objectManipulators "Object Manipulators"
+            controlTab;
+	
+	    // --------------------------------------------------------------------------------------------------------------
+	
+	
+	showWindow kp_schoolBox;
+}
+
+ 
+    // -------------------- ------------------- ------------------- ------------------- ------------------- -------------------    
+    // -------------------- ------------------- UI Functions ------------------- ------------------- -------------------    
+    // -------------------- ------------------- ------------------- ------------------- ------------------- -------------------    
+
+
+           // --------------------------------------- Randomly Move Objects ----------------------------------------------------   
+    proc MoveObjectsRandomly ()
+{
+      string $objectsToMove[] = `ls -sl`;
+      for($items in $objectsToMove)
+     {
+          float $xMinVal = `floatField -q -v randMoveXMin`;
+          float $yMinVal = `floatField -q -v randMoveYMin`;
+          float $zMinVal = `floatField -q -v randMoveZMin`;
+          float $xMaxVal = `floatField -q -v randMoveXMax`;
+          float $yMaxVal = `floatField -q -v randMoveYMax`;
+          float $zMaxVal = `floatField -q -v randMoveZMax`;
+          
+            float $xRand = rand($xMinVal,$xMaxVal);
+            float $yRand = rand($yMinVal,$yMaxVal);
+            float $zRand = rand($zMinVal,$zMaxVal);
+
+    float $xPos = `getAttr($items + ".tx")`;
+    float $yPos = `getAttr($items + ".ty")`;
+    float $zPos = `getAttr($items + ".tz")`;
+    setAttr($items + ".tx") ($xPos*0 + $xRand);
+    setAttr($items + ".ty") ($xPos*0 + $yRand);
+    setAttr($items + ".tz") ($zPos*0 + $zRand);
+     }  
+}
+
+            // ------------ Recolor Controls --------------
+        
+    proc ColorControls(string $ctrl, int $color)
+{
+    // Sets color index of the control 
+    
+    //define string array for shapes
+    string $shapes[];
+    
+    //find the shape node[s] of $ctrl
+    $shapes = `listRelatives -shapes $ctrl`;
+    
+    for ($shape in $shapes)
+    {
+        //check for nurbsCurve
+        if (`nodeType $shape` == "nurbsCurve")
+        {
+            //enable override on $shape
+            setAttr ($shape + ".overrideEnabled") 1;
+            
+            //set $shape color to $color
+            setAttr ($shape + ".overrideColor") $color;
+        } 
+        else 
+        {
+            warning("Selected object is not a curve.");
+        }global proc Master_Schoolbox() 
+{
+            // window declaration //
+    if ( `window -exists kp_schoolBox` )
+deleteUI kp_schoolBox;
+
+    //Variables
+    
+    int $boxWidth = 100;
+
+    window 
+	-t "schoolBox"
+	-w ($boxWidth + 10)
+	-mxb off
+	-mnb on
+	-resizeToFitChildren off
+	-sizeable on
+	-menuBar true
+	kp_schoolBox;
+        //------------------------------Control Creation/Color Change Window -----------------------------------
+    tabLayout controlTab;
+        string $colorTab = `columnLayout -width (250)`;
+        
+            gridLayout -width (250) -height (75) -numberOfRows 4 -numberOfColumns 8 -cellWidthHeight 30 20;
+
+            //Color values sourced from Lester Bank's am_dock Rigging dock script
+		
+			iconTextButton -bgc 0 0.016 0.373 -rpt true -command "RecolorSelected(0)" ;
+			iconTextButton -bgc .000 .000 .000 -rpt true -command "RecolorSelected(1)" ;
+			iconTextButton -bgc .247 .247 .247 -rpt true -command "RecolorSelected(2)";
+			iconTextButton -bgc .498 .498 .498 -rpt true -command "RecolorSelected(3)" ;
+			iconTextButton -bgc 0.608 0 0.157 -rpt true -command "RecolorSelected(4)";
+			iconTextButton -bgc 0 0 1 -rpt true -command "RecolorSelected(6)" ;
+			iconTextButton -bgc 0 0.275 0.094 -rpt true -command "RecolorSelected(7)" ;
+			iconTextButton -bgc 0.145 0 0.263 -rpt true -command "RecolorSelected(8)";
+			iconTextButton -bgc 0.78 0 0.78 -rpt true -command "RecolorSelected(9)";
+			iconTextButton -bgc 0.537 0.278 0.2 -rpt true -command "RecolorSelected(10)" ;
+			iconTextButton -bgc 0.243 0.133 0.122 -rpt true -command "RecolorSelected(11)"; 
+			iconTextButton -bgc 0.6 0.145 0 -rpt true -command "RecolorSelected(12)";
+			iconTextButton -bgc 1 0 0 -rpt true -command "RecolorSelected(13)" ;
+			iconTextButton -bgc 0 1 0 -rpt true  -command "RecolorSelected(14)" ;
+			iconTextButton -bgc 0 0.255 0.6 -rpt true -command "RecolorSelected(15)" ;
+			iconTextButton -bgc 1 1 1 -rpt true -command "RecolorSelected(16)" ;
+			iconTextButton -bgc 1 1 0 -rpt true -command "RecolorSelected(17)" ;
+			iconTextButton -bgc 0.388 0.863 1 -rpt true -command "RecolorSelected(18)" ;
+			iconTextButton -bgc 0.263 1 0.635 -rpt true -command "RecolorSelected(19)" ;
+			iconTextButton -bgc 1 0.686 0.686 -rpt true -command "RecolorSelected(20)" ;
+			iconTextButton -bgc 0.89 0.675 0.475 -rpt true -command "RecolorSelected(21)" ;
+			iconTextButton -bgc 1 1 0.384 -rpt true -command "RecolorSelected(22)";
+			iconTextButton -bgc 0 0.6 0.325 -rpt true -command "RecolorSelected(23)";
+			iconTextButton -bgc 0.627 0.412 0.188 -rpt true -command "RecolorSelected(24)"; 
+			iconTextButton -bgc 0.62 0.627 0.188 -rpt true -command "RecolorSelected(25)";
+			iconTextButton -bgc 0.408 0.627 0.188 -rpt true -command "RecolorSelected(26)";
+			iconTextButton -bgc 0.188 0.627 0.365 -rpt true -command "RecolorSelected(27)" ;
+			iconTextButton -bgc 0.188 0.627 0.627 -rpt true -command "RecolorSelected(28)" ;
+			iconTextButton -bgc 0.188 0.404 0.627 -rpt true -command "RecolorSelected(29)" ;
+			iconTextButton -bgc 0.435 0.188 0.627 -rpt true -command "RecolorSelected(30)";
+			iconTextButton -label "T" -style "iconAndTextHorizontal" -bgc .498 .498 .498 -rpt true  -command "RecolorSelected(31)";
+			iconTextButton -label "R" -style "iconAndTextHorizontal" -bgc 0 0 0 -rpt true -command "RecolorSelected(32)";
+			
+
+            setParent ..; 
+            
+            rowLayout -w (250) -numberOfColumns 3;
+                columnLayout;
+                button -l "Circle" -command "CreateControlShape(0)";
+                button -l "Diamond" -command "CreateControlShape(1)";
+                setParent..;
+                
+                columnLayout;
+                button -l "Gear" -command "CreateControlShape(2)";
+                button -l "Pin" -command "CreateControlShape(3)";
+                setParent..;
+                
+                columnLayout;
+                button -l "Star" -command "CreateControlShape(4)";
+                button -l "Null";
+                setParent..;
+            setParent..;
+        setParent..;
+			
+        
+
+        
+                //----------------------------  AutoRigSetups ----------------------------
+        
+        string $autoRigSetups = `columnLayout -w 300`;
+            frameLayout -w 300 -collapsable on;
+                gridLayout -cr 1 -ch 100 -cw 100;
+                button -l "Stretchy IK setup";
+                button -l "FK Rig Setup";
+                button -l "Spline Curve Setup";
+                setParent..;               
+            setParent..;
+        setParent..;       
+        
+        //----------------------------  Rename Objects ----------------------------
+        
+		string $objectRenamer = `columnLayout`;
+		    rowLayout -nc 2;
+    		    textField renameText;
+    		    button -l "Rename" -command "RenamerLoop()";
+    		setParent..;
+		setParent..;
+		
+		/// ---------------------------- Move and Manipulate Objects ----------------------------
+		
+		string $objectManipulators = `columnLayout -w 20`;
+		    frameLayout -collapsable on;
+    		    rowLayout -nc 3;
+    		    // column 1
+        		    rowLayout -nc 2;
+            		    text -l "xMin";
+            		    floatField randMoveXMin;
+            		setParent..;  
+            		//    column 2     		
+            		rowLayout -nc 2;
+            		    text -l "yMin";
+            		    floatField randMoveYMin;
+            		setParent..;
+            		// column 3
+            		rowLayout -nc 2;
+            		    text -l "zMin";
+            		    floatField randMoveZMin;
+            		setParent..;
+                setParent..;
+                
+                rowLayout -nc 3;
+    		    // column 1
+        		    rowLayout -nc 2;
+            		    text -l "xMax";
+            		    floatField randMoveXMax;
+            		setParent..;  
+            		//    column 2     		
+            		rowLayout -nc 2;
+            		    text -l "yMax";
+            		    floatField randMoveYMax;
+            		setParent..;
+            		// column 3
+            		rowLayout -nc 2;
+            		    text -l "zMax";
+            		    floatField randMoveZMax;
+            		setParent..;
+                setParent..;
+    
+                button -l "MoveObjects" -command "MoveObjectsRandomly()";
+                
+                setParent..;
+             setParent..;
+		setParent..;
+		    
+
+            //edit all the tabs in the layout
+        				
+            tabLayout -edit 
+                -tabLabel $colorTab "Control Colors"
+                -tabLabel $autoRigSetups "--UNDER CONSTRUCTION--"
+                -tabLabel $objectRenamer "Object Renamer"
+                -tabLabel $objectManipulators "Object Manipulators"
+            controlTab;
+	
+	    // --------------------------------------------------------------------------------------------------------------
+	
+	
+	showWindow kp_schoolBox;
+}
+
+ 
+    // -------------------- ------------------- ------------------- ------------------- ------------------- -------------------    
+    // -------------------- ------------------- UI Functions ------------------- ------------------- -------------------    
+    // -------------------- ------------------- ------------------- ------------------- ------------------- -------------------    
+
+
+           // --------------------------------------- Randomly Move Objects ----------------------------------------------------   
+    proc MoveObjectsRandomly ()
+{
+      string $objectsToMove[] = `ls -sl`;
+      for($items in $objectsToMove)
+     {
+          float $xMinVal = `floatField -q -v randMoveXMin`;
+          float $yMinVal = `floatField -q -v randMoveYMin`;
+          float $zMinVal = `floatField -q -v randMoveZMin`;
+          float $xMaxVal = `floatField -q -v randMoveXMax`;
+          float $yMaxVal = `floatField -q -v randMoveYMax`;
+          float $zMaxVal = `floatField -q -v randMoveZMax`;
+          
+            float $xRand = rand($xMinVal,$xMaxVal);
+            float $yRand = rand($yMinVal,$yMaxVal);
+            float $zRand = rand($zMinVal,$zMaxVal);
+
+    float $xPos = `getAttr($items + ".tx")`;
+    float $yPos = `getAttr($items + ".ty")`;
+    float $zPos = `getAttr($items + ".tz")`;
+    setAttr($items + ".tx") ($xPos*0 + $xRand);
+    setAttr($items + ".ty") ($xPos*0 + $yRand);
+    setAttr($items + ".tz") ($zPos*0 + $zRand);
+     }  
+}
+
+            // ------------ Recolor Controls --------------
+        
+    proc ColorControls(string $ctrl, int $color)
+{
+    // Sets color index of the control 
+    
+    //define string array for shapes
+    string $shapes[];
+    
+    //find the shape node[s] of $ctrl
+    $shapes = `listRelatives -shapes $ctrl`;
+    
+    for ($shape in $shapes)
+    {
+        //check for nurbsCurve
+        if (`nodeType $shape` == "nurbsCurve")
+        {
+            //enable override on $shape
+            setAttr ($shape + ".overrideEnabled") 1;
+            
+            //set $shape color to $color
+            setAttr ($shape + ".overrideColor") $color;
+        } 
+        else 
+        {
+            warning("Selected object is not a curve.");
+        }
+    }
+}
+     //proc for recoloring selected
+    proc RecolorSelected(int $color)
+{
+    string $sels[] = `ls -sl`;
+        for($sel in $sels)
+        {
+            ColorControls($sel, $color);
+        }
+}
+
+        // ------------------------------- Make Control Shapes ----------------------
+    proc CreateControlShape(int $val)
+{
+    
+    switch ($val)
+    {
+    // Diamond Curve Shape
+    case 1 :
+        curve -bezier -d 3 -p -0.0132489 0 1.980469 -p -0.0132489 0 1.980469 -p 2.000224 0 -0.00773311 -p 2.000224 0 -0.00773311 -p 2.000224 0 -0.00773311 -p -0.0185535 0 -2.00537 -p -0.0185535 0 -2.00537 -p -0.0185535 0 -2.00537 -p -2.018497 0 -0.00351542 -p -2.018497 0 -0.00351542 -p -2.018497 0 -0.00351542 -p -0.0511383 0 1.941593 -p -0.0602783 0 1.934071 -k 0 -k 0 -k 0 -k 1 -k 1 -k 1 -k 2 -k 2 -k 2 -k 3 -k 3 -k 3 -k 4 -k 4 -k 4 ;
+        bezierCurveToNurbs;
+    break;
+    case 2 :
+        // Pin Curve Shape
+        curve -bezier -d 3 -p 0.0090307 -0.0632149 0 -p 0.0090307 -0.0632149 0 -p -0.0090307 3.982541 0 -p -0.0090307 3.982541 0 -p -0.0090307 3.982541 0 -p 1.02047 4.054786 0 -p 1.002408 5.012041 0 -p 0.984347 5.969296 0 -p 0.984347 5.969296 0 -p 0.0090307 5.987357 0 -p -0.966285 6.005418 0 -p -0.966285 5.915111 0 -p -0.984347 4.99398 0 -p -1.002408 4.072848 0 -p -0.478627 4.036725 0 -p -0.153522 3.964479 0 -k 0 -k 0 -k 0 -k 1 -k 1 -k 1 -k 2 -k 2 -k 2 -k 3 -k 3 -k 3 -k 4 -k 4 -k 4 -k 5 -k 5 -k 5 ;
+        bezierCurveToNurbs;
+    break;
+    case 3 :
+        // Gear Shape
+        curve -bezier -d 3 -p -0.0090307 -0.0632149 0 -p -0.0090307 -0.0632149 0 -p 0.0090307 3.982541 0 -p 0.0090307 3.982541 0 -p 0.0090307 3.982541 0 -p 0.984347 3.964479 0 -p 0.984347 3.964479 0 -p 0.984347 3.964479 0 -p 1.002408 2.971102 0 -p 1.002408 2.971102 0 -p 1.002408 2.971102 0 -p 2.989163 1.002408 0 -p 2.989163 1.002408 0 -p 2.989163 1.002408 0 -p 3.928356 1.002408 0 -p 3.928356 1.002408 0 -p 3.928356 1.002408 0 -p 4.018663 -1.128838 0 -p 4.018663 -1.128838 0 -p 4.018663 -1.128838 0 -p 3.115593 -1.074654 0 -p 3.115593 -1.074654 0 -p 3.115593 -1.074654 0 -p 1.056592 -3.043347 0 -p 1.056592 -3.043347 0 -p 1.056592 -3.043347 0 -p 1.002408 -3.964479 0 -p 1.002408 -3.964479 0 -p 1.002408 -3.964479 0 -p -1.002408 -3.928356 0 -p -1.002408 -3.928356 0 -p -1.002408 -3.928356 0 -p -0.930163 -3.061409 0 -p -0.930163 -3.061409 0 -p -0.930163 -3.061409 0 -p -2.95304 -1.110777 0 -p -2.95304 -1.110777 0 -p -2.95304 -1.110777 0 -p -3.892234 -1.056592 0 -p -3.892234 -1.056592 0 -p -3.892234 -1.056592 0 -p -4.036725 0.948224 0 -p -4.036725 0.948224 0 -p -4.036725 0.948224 0 -p -3.007225 0.912101 0 -p -3.007225 0.912101 0 -p -3.007225 0.912101 0 -p -0.984347 2.934979 0 -p -0.984347 2.934979 0 -p -0.984347 2.934979 0 -p -1.002408 4.000602 0 -p -1.002408 4.000602 0 -p -1.002408 4.000602 0 -p -0.117399 3.946418 0 -p -0.117399 3.946418 0 -k 0 -k 0 -k 0 -k 1 -k 1 -k 1 -k 2 -k 2 -k 2 -k 3 -k 3 -k 3 -k 4 -k 4 -k 4 -k 5 -k 5 -k 5 -k 6 -k 6 -k 6 -k 7 -k 7 -k 7 -k 8 -k 8 -k 8 -k 9 -k 9 -k 9 -k 10 -k 10 -k 10 -k 11 -k 11 -k 11 -k 12 -k 12 -k 12 -k 13 -k 13 -k 13 -k 14 -k 14 -k 14 -k 15 -k 15 -k 15 -k 16 -k 16 -k 16 -k 17 -k 17 -k 17 -k 18 -k 18 -k 18 ;
+        bezierCurveToNurbs;
+    break;
+    case 4 :
+        // Star Shape
+        curve -bezier -d 3 -p 0 0 -0.963785 -p 0 0 -0.963785 -p -0.0175234 0 0.0175234 -p -1.016355 0 0.0525701 -p -2.015187 0 0.0876168 -p -0.0350467 0 -0.0350467 -p -0.0350467 0 1.051402 -p -0.0350467 0 2.13785 -p -0.15771 0 0.0525701 -p 0.998832 0 0.0525701 -p 2.155374 0 0.0525701 -p 0.0175234 0 0.192757 -p 0.0175234 0 -1.103972 -k 0 -k 0 -k 0 -k 1 -k 1 -k 1 -k 2 -k 2 -k 2 -k 3 -k 3 -k 3 -k 4 -k 4 -k 4 ;
+        bezierCurveToNurbs;
+    break;
+    
+    default :
+        circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+    break;
+    }
+}
+
+        // ------------------------------  Renaming loop -----------------------------------
+
+global proc string RnTextSwitch()
+{
+    string $nameFormatText = `textField -q -text renameText`;
+    textField -e -text $nameFormatText renameText;
+    return $nameFormatText;
+}       
+
+proc int NumDigits(int $i)
+{
+        
+    //get the number of objects
+    
+    // >> " $i " <<
+    
+    //turn the number into a string
+    string $numberString = string($i);
+    // get the size of the string into a number
+    return size($numberString);
+}
+
+proc RenamerLoop (string $nameFormat) 
+{
+    //Declare my seleciton as an array of strings
+    string $selections[] = `ls -sl`;
+    //get how many objects are selected. Return how many digits are in that number
+    string $numSize = NumDigits(size($selections));
+        // the incramental number to add for my call
+    int $i =0;
+    //look at each selection and create the name for each
+    for ($sel in $selections)
+    {  
+        $i++;
+        // Create the name. Stop upon hitting a number and place the numerical value
+        //
+        // split string into segments
+        string $stringSegments[];
+        //Seperate my naming format
+        tokenize $nameFormat "_" $stringSegments; 
+        string $newName = "";
+        //look at each segment. if it is a number, apply 0 and the numerical value
+        for($token in $stringSegments)
+        {
+            if($token == "#")
+            {
+
+               //how many zeros to add?
+                   //the amount of digit characters in the total selection - the number of digit characters in i
+               int $numZeros = NumDigits(size($selections)) - NumDigits($i);
+               //add that many zeros
+               while($numZeros > 0 ) 
+               {
+                  $newName += "0";
+                  $numZeros--;
+               }
+               //add the number incrementally
+               $newName += string($i) + "_";
+            }
+               //else, tack on other segments in line
+            else 
+            {
+                $newName += $token + "_";
+            }
+            
+        }
+        // Get rid of trailing underscore.
+        int $endPosition = size($newName) -1;
+        string $newName2 = `substring $newName 1 $endPosition`;
+        rename $sel $newName2;
+    }  
+}
+    }
+}
+     //proc for recoloring selected
+    proc RecolorSelected(int $color)
+{
+    string $sels[] = `ls -sl`;
+        for($sel in $sels)
+        {
+            ColorControls($sel, $color);
+        }
+}
+
+        // ------------------------------- Make Control Shapes ----------------------
+    proc CreateControlShape(int $val)
+{
+    
+    switch ($val)
+    {
+    // Diamond Curve Shape
+    case 1 :
+        curve -bezier -d 3 -p -0.0132489 0 1.980469 -p -0.0132489 0 1.980469 -p 2.000224 0 -0.00773311 -p 2.000224 0 -0.00773311 -p 2.000224 0 -0.00773311 -p -0.0185535 0 -2.00537 -p -0.0185535 0 -2.00537 -p -0.0185535 0 -2.00537 -p -2.018497 0 -0.00351542 -p -2.018497 0 -0.00351542 -p -2.018497 0 -0.00351542 -p -0.0511383 0 1.941593 -p -0.0602783 0 1.934071 -k 0 -k 0 -k 0 -k 1 -k 1 -k 1 -k 2 -k 2 -k 2 -k 3 -k 3 -k 3 -k 4 -k 4 -k 4 ;
+        bezierCurveToNurbs;
+    break;
+    case 2 :
+        // Pin Curve Shape
+        curve -bezier -d 3 -p 0.0090307 -0.0632149 0 -p 0.0090307 -0.0632149 0 -p -0.0090307 3.982541 0 -p -0.0090307 3.982541 0 -p -0.0090307 3.982541 0 -p 1.02047 4.054786 0 -p 1.002408 5.012041 0 -p 0.984347 5.969296 0 -p 0.984347 5.969296 0 -p 0.0090307 5.987357 0 -p -0.966285 6.005418 0 -p -0.966285 5.915111 0 -p -0.984347 4.99398 0 -p -1.002408 4.072848 0 -p -0.478627 4.036725 0 -p -0.153522 3.964479 0 -k 0 -k 0 -k 0 -k 1 -k 1 -k 1 -k 2 -k 2 -k 2 -k 3 -k 3 -k 3 -k 4 -k 4 -k 4 -k 5 -k 5 -k 5 ;
+        bezierCurveToNurbs;
+    break;
+    case 3 :
+        // Gear Shape
+        curve -bezier -d 3 -p -0.0090307 -0.0632149 0 -p -0.0090307 -0.0632149 0 -p 0.0090307 3.982541 0 -p 0.0090307 3.982541 0 -p 0.0090307 3.982541 0 -p 0.984347 3.964479 0 -p 0.984347 3.964479 0 -p 0.984347 3.964479 0 -p 1.002408 2.971102 0 -p 1.002408 2.971102 0 -p 1.002408 2.971102 0 -p 2.989163 1.002408 0 -p 2.989163 1.002408 0 -p 2.989163 1.002408 0 -p 3.928356 1.002408 0 -p 3.928356 1.002408 0 -p 3.928356 1.002408 0 -p 4.018663 -1.128838 0 -p 4.018663 -1.128838 0 -p 4.018663 -1.128838 0 -p 3.115593 -1.074654 0 -p 3.115593 -1.074654 0 -p 3.115593 -1.074654 0 -p 1.056592 -3.043347 0 -p 1.056592 -3.043347 0 -p 1.056592 -3.043347 0 -p 1.002408 -3.964479 0 -p 1.002408 -3.964479 0 -p 1.002408 -3.964479 0 -p -1.002408 -3.928356 0 -p -1.002408 -3.928356 0 -p -1.002408 -3.928356 0 -p -0.930163 -3.061409 0 -p -0.930163 -3.061409 0 -p -0.930163 -3.061409 0 -p -2.95304 -1.110777 0 -p -2.95304 -1.110777 0 -p -2.95304 -1.110777 0 -p -3.892234 -1.056592 0 -p -3.892234 -1.056592 0 -p -3.892234 -1.056592 0 -p -4.036725 0.948224 0 -p -4.036725 0.948224 0 -p -4.036725 0.948224 0 -p -3.007225 0.912101 0 -p -3.007225 0.912101 0 -p -3.007225 0.912101 0 -p -0.984347 2.934979 0 -p -0.984347 2.934979 0 -p -0.984347 2.934979 0 -p -1.002408 4.000602 0 -p -1.002408 4.000602 0 -p -1.002408 4.000602 0 -p -0.117399 3.946418 0 -p -0.117399 3.946418 0 -k 0 -k 0 -k 0 -k 1 -k 1 -k 1 -k 2 -k 2 -k 2 -k 3 -k 3 -k 3 -k 4 -k 4 -k 4 -k 5 -k 5 -k 5 -k 6 -k 6 -k 6 -k 7 -k 7 -k 7 -k 8 -k 8 -k 8 -k 9 -k 9 -k 9 -k 10 -k 10 -k 10 -k 11 -k 11 -k 11 -k 12 -k 12 -k 12 -k 13 -k 13 -k 13 -k 14 -k 14 -k 14 -k 15 -k 15 -k 15 -k 16 -k 16 -k 16 -k 17 -k 17 -k 17 -k 18 -k 18 -k 18 ;
+        bezierCurveToNurbs;
+    break;
+    case 4 :
+        // Star Shape
+        curve -bezier -d 3 -p 0 0 -0.963785 -p 0 0 -0.963785 -p -0.0175234 0 0.0175234 -p -1.016355 0 0.0525701 -p -2.015187 0 0.0876168 -p -0.0350467 0 -0.0350467 -p -0.0350467 0 1.051402 -p -0.0350467 0 2.13785 -p -0.15771 0 0.0525701 -p 0.998832 0 0.0525701 -p 2.155374 0 0.0525701 -p 0.0175234 0 0.192757 -p 0.0175234 0 -1.103972 -k 0 -k 0 -k 0 -k 1 -k 1 -k 1 -k 2 -k 2 -k 2 -k 3 -k 3 -k 3 -k 4 -k 4 -k 4 ;
+        bezierCurveToNurbs;
+    break;
+    
+    default :
+        circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+    break;
+    }
+}
+
+        // ------------------------------  Renaming loop -----------------------------------
+
+global proc string RnTextSwitch()
+{
+    string $nameFormatText = `textField -q -text renameText`;
+    textField -e -text $nameFormatText renameText;
+    return $nameFormatText;
+}       
+
+proc int NumDigits(int $i)
+{
+        
+    //get the number of objects
+    
+    // >> " $i " <<
+    
+    //turn the number into a string
+    string $numberString = string($i);
+    // get the size of the string into a number
+    return size($numberString);
+}
+
+proc RenamerLoop (string $nameFormat) 
+{
+    //Declare my seleciton as an array of strings
+    string $selections[] = `ls -sl`;
+    //get how many objects are selected. Return how many digits are in that number
+    string $numSize = NumDigits(size($selections));
+        // the incramental number to add for my call
+    int $i =0;
+    //look at each selection and create the name for each
+    for ($sel in $selections)
+    {  
+        $i++;
+        // Create the name. Stop upon hitting a number and place the numerical value
+        //
+        // split string into segments
+        string $stringSegments[];
+        //Seperate my naming format
+        tokenize $nameFormat "_" $stringSegments; 
+        string $newName = "";
+        //look at each segment. if it is a number, apply 0 and the numerical value
+        for($token in $stringSegments)
+        {
+            if($token == "#")
+            {
+
+               //how many zeros to add?
+                   //the amount of digit characters in the total selection - the number of digit characters in i
+               int $numZeros = NumDigits(size($selections)) - NumDigits($i);
+               //add that many zeros
+               while($numZeros > 0 ) 
+               {
+                  $newName += "0";
+                  $numZeros--;
+               }
+               //add the number incrementally
+               $newName += string($i) + "_";
+            }
+               //else, tack on other segments in line
+            else 
+            {
+                $newName += $token + "_";
+            }
+            
+        }
+        // Get rid of trailing underscore.
+        int $endPosition = size($newName) -1;
+        string $newName2 = `substring $newName 1 $endPosition`;
+        rename $sel $newName2;
+    }  
+}
