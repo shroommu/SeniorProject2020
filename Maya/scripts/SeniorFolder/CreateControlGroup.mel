@@ -1,0 +1,97 @@
+proc CreateControlGroup() 
+{
+    string $sels[] = `ls - sl`;
+    int $nameNum = 0;
+    int $colorNum = 2;
+    int $selsSize = size($sels);
+
+   if ($sels[0] != "")
+   {
+         while ($nameNum < $selsSize)
+        {
+            
+            
+            string $groupTempName = ($sels[$nameNum] + "_Grp");
+            select -r $sels[$nameNum];
+            ColorControls($sels[$nameNum], $colorNum);
+            group -em -n $groupTempName;
+            select -add $sels[$nameNum];
+            matchTransform;
+            select -r $sels[$nameNum];
+            select -add $groupTempName;
+            parent;
+            $nameNum++;
+            
+        }
+   }
+   else 
+   {
+       group -em;
+   }
+}
+
+global proc RecolorSelected(int $color)
+{
+    string $sels[] = `ls -sl`;
+        for($sel in $sels)
+        {
+            ColorControls($sel, $color);
+        }
+}
+
+
+global proc ColorControls(string $ctrl, int $color)
+{
+    // Sets color index of the control
+    
+    //define string array for shapes
+    string $shapes[];
+    
+    //find the shape node[s] of $ctrl
+    $shapes = `listRelatives -shapes $ctrl`;
+    
+    for ($shape in $shapes)
+    {
+        //check for nurbsCurve
+        if (`nodeType $shape` == "nurbsCurve")
+        {
+            //enable override on $shape
+            setAttr ($shape + ".overrideEnabled") 1;
+            
+            //set $shape color to $color
+            setAttr ($shape + ".overrideColor") $color;
+        } 
+        else 
+        {
+            warning("Selected object is not a curve.");
+        }
+    }
+}
+
+proc CreateControlShape(int $val)
+{
+    
+    switch ($val)
+    {
+    // Diamond Curve Shape
+    case 1 :
+        curve -bezier -d 3 -p -0.0132489 0 1.980469 -p -0.0132489 0 1.980469 -p 2.000224 0 -0.00773311 -p 2.000224 0 -0.00773311 -p 2.000224 0 -0.00773311 -p -0.0185535 0 -2.00537 -p -0.0185535 0 -2.00537 -p -0.0185535 0 -2.00537 -p -2.018497 0 -0.00351542 -p -2.018497 0 -0.00351542 -p -2.018497 0 -0.00351542 -p -0.0511383 0 1.941593 -p -0.0602783 0 1.934071 -k 0 -k 0 -k 0 -k 1 -k 1 -k 1 -k 2 -k 2 -k 2 -k 3 -k 3 -k 3 -k 4 -k 4 -k 4 ;
+        bezierCurveToNurbs;
+    break;
+    case 2 :
+        // Pin Curve Shape
+        curve -bezier -d 3 -p 0.0090307 -0.0632149 0 -p 0.0090307 -0.0632149 0 -p -0.0090307 3.982541 0 -p -0.0090307 3.982541 0 -p -0.0090307 3.982541 0 -p 1.02047 4.054786 0 -p 1.002408 5.012041 0 -p 0.984347 5.969296 0 -p 0.984347 5.969296 0 -p 0.0090307 5.987357 0 -p -0.966285 6.005418 0 -p -0.966285 5.915111 0 -p -0.984347 4.99398 0 -p -1.002408 4.072848 0 -p -0.478627 4.036725 0 -p -0.153522 3.964479 0 -k 0 -k 0 -k 0 -k 1 -k 1 -k 1 -k 2 -k 2 -k 2 -k 3 -k 3 -k 3 -k 4 -k 4 -k 4 -k 5 -k 5 -k 5 ;
+        bezierCurveToNurbs;
+    break;
+    case 3 :
+        // Gear Shape
+        curve -bezier -d 3 -p -0.0090307 -0.0632149 0 -p -0.0090307 -0.0632149 0 -p 0.0090307 3.982541 0 -p 0.0090307 3.982541 0 -p 0.0090307 3.982541 0 -p 0.984347 3.964479 0 -p 0.984347 3.964479 0 -p 0.984347 3.964479 0 -p 1.002408 2.971102 0 -p 1.002408 2.971102 0 -p 1.002408 2.971102 0 -p 2.989163 1.002408 0 -p 2.989163 1.002408 0 -p 2.989163 1.002408 0 -p 3.928356 1.002408 0 -p 3.928356 1.002408 0 -p 3.928356 1.002408 0 -p 4.018663 -1.128838 0 -p 4.018663 -1.128838 0 -p 4.018663 -1.128838 0 -p 3.115593 -1.074654 0 -p 3.115593 -1.074654 0 -p 3.115593 -1.074654 0 -p 1.056592 -3.043347 0 -p 1.056592 -3.043347 0 -p 1.056592 -3.043347 0 -p 1.002408 -3.964479 0 -p 1.002408 -3.964479 0 -p 1.002408 -3.964479 0 -p -1.002408 -3.928356 0 -p -1.002408 -3.928356 0 -p -1.002408 -3.928356 0 -p -0.930163 -3.061409 0 -p -0.930163 -3.061409 0 -p -0.930163 -3.061409 0 -p -2.95304 -1.110777 0 -p -2.95304 -1.110777 0 -p -2.95304 -1.110777 0 -p -3.892234 -1.056592 0 -p -3.892234 -1.056592 0 -p -3.892234 -1.056592 0 -p -4.036725 0.948224 0 -p -4.036725 0.948224 0 -p -4.036725 0.948224 0 -p -3.007225 0.912101 0 -p -3.007225 0.912101 0 -p -3.007225 0.912101 0 -p -0.984347 2.934979 0 -p -0.984347 2.934979 0 -p -0.984347 2.934979 0 -p -1.002408 4.000602 0 -p -1.002408 4.000602 0 -p -1.002408 4.000602 0 -p -0.117399 3.946418 0 -p -0.117399 3.946418 0 -k 0 -k 0 -k 0 -k 1 -k 1 -k 1 -k 2 -k 2 -k 2 -k 3 -k 3 -k 3 -k 4 -k 4 -k 4 -k 5 -k 5 -k 5 -k 6 -k 6 -k 6 -k 7 -k 7 -k 7 -k 8 -k 8 -k 8 -k 9 -k 9 -k 9 -k 10 -k 10 -k 10 -k 11 -k 11 -k 11 -k 12 -k 12 -k 12 -k 13 -k 13 -k 13 -k 14 -k 14 -k 14 -k 15 -k 15 -k 15 -k 16 -k 16 -k 16 -k 17 -k 17 -k 17 -k 18 -k 18 -k 18 ;
+        bezierCurveToNurbs;
+    break;
+    default :
+        circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+    break;
+    }
+
+
+}

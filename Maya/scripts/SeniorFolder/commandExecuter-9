@@ -1,0 +1,6 @@
+string $selectedObjects[] = `ls -sl`;
+string $currentObj;
+for ($currentObj in $selectedObjects) {
+  // center $currentObj's pivot
+  xform -cp $currentObj;
+}
