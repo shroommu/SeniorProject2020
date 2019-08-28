@@ -5,9 +5,7 @@ using UnityEngine;
 public class PlayerMoveCamDependent : MonoBehaviour
 {
     public bool canMove = true;
-
-	public float velocity = 0;
-
+	
 	public float speed = 1;
 	private float baseSpeed;
 	public float jumpSpeed = 1;

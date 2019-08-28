@@ -14,11 +14,13 @@ public class InputManager : MonoBehaviour {
 	private float vertical2Speed = 0;
 	private float horizontal2Speed = 0;
 	public bool l3pressed = false;
+	public bool xButtonPressed = false;
 
 	private bool canGetInput = true;
 
 	public UnityEvent attack1Event;
-	public UnityEvent attack2Event;
+	public UnityEvent attack2TrueEvent;
+	public UnityEvent attack2FalseEvent;
 	public UnityEvent sprintEvent;
 	public UnityEvent walkEvent;
 	public UnityEvent jumpEvent;
@@ -45,7 +47,16 @@ public class InputManager : MonoBehaviour {
 
 			if(Input.GetButtonDown(currentInputType.xButtonName))
 			{
-				attack2Event.Invoke();
+				xButtonPressed = !xButtonPressed;
+
+				if(xButtonPressed)
+				{
+					attack2TrueEvent.Invoke();
+				}
+				else
+				{
+					attack2FalseEvent.Invoke();
+				}
 			}
 
 			if(Input.GetButtonDown(currentInputType.l3ButtonName))
