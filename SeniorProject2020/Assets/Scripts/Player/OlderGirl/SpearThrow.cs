@@ -5,26 +5,42 @@ using UnityEngine;
 public class SpearThrow : MonoBehaviour
 {
     public GameObject spear;
+    public GameObject hand;
+    private Rigidbody spearRB;
     public float spearSpeed = 1;
     public bool canThrow = true;
+
+    public void Start()
+    {
+        spearRB = spear.GetComponent<Rigidbody>();
+    }
 
     public void Throw()
     {
         if(canThrow)
         {
+            print("throwing");
             spear.transform.parent = null;
-            
-            Rigidbody spearRB = spear.GetComponent<Rigidbody>();
+
             spearRB.useGravity = true;
             spearRB.isKinematic = false;
             spearRB.AddForce(spear.transform.forward * spearSpeed);
+
             canThrow = false;
-            print("Throw");
         }
     }
 
     public void Return()
     {
-        print("Return");
+        if(!canThrow)
+        {
+            print("returning");
+            spear.transform.position = hand.transform.position;
+            spear.transform.rotation = hand.transform.rotation;
+            spear.transform.parent = hand.transform;
+            spearRB.useGravity = false;
+            spearRB.isKinematic = true;
+            canThrow = true;
+        }
     }
 }
