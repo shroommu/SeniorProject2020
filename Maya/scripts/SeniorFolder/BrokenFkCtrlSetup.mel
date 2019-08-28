@@ -1,0 +1,51 @@
+ //connectAttr -f Transform_Ctrl.Translate_Switch TranslateConstraint.Transform_CtrlW0;
+
+//make a parent constraint that is seperated from the translate and the rotate.
+proc SplitParentConstraints(string $constraintTitle) 
+{
+    parentConstraint -n ($constraintTitle + "_TranslateConstraint") -mo -skipRotate x -skipRotate y -skipRotate z -weight 1;
+    parentConstraint -n ($constraintTitle + "_RotateConstraint") -mo -skipTranslate x -skipTranslate y -skipTranslate z -weight 1; 
+}
+// make an attribute that we will link to the constraints so we can manipulate their values.
+proc AddConstraintSwitch(string $itemtoadd)
+{
+    // strings for the attributes. Will likely need to be changed if we need to add more attributes for the proc
+     string $translateSwitchAttrName = "Translate_Switch";
+     string $rotateSwitchAttrName = "Rotate_Switch";
+     
+     // select the items to add the attribute too. this is the item we give as a parameter.
+            select -r $itemtoadd;
+            addAttr -ln $translateSwitchAttrName -at "float"  -min 0 -max 1 -dv 0 -k 1;
+            addAttr -ln $rotateSwitchAttrName -at "float"  -min 0 -max 1 -dv 0 -k 1;
+}
+// link the constraints with the formula set up. connectAttr -f Object Name  Attribute name  / constraint name  Constraint attribute
+proc LinkConstraints (string $objName, string $attributeName, string $constraintName, string $constraintAtt)
+{
+    connectAttr -f ($objName + "." + $attributeName) ($constraintName + "." + $constraintAtt);
+}
+
+//Linking the controls together.
+proc BrokenFkCtrlSetup()
+{
+    string $translateSwitchAttrName = "Translate_Switch";
+    string $rotateSwitchAttrName = "Rotate_Switch";
+    string $sel[] = `ls - sl`;
+    string $ctrlOneGiving = $sel[0];
+    //get the parent of the object that we want to link too. This is used because of the fact we want too
+    //link the constraints to the group so we can zero out our values for animation.
+    string $ctrlTwoRecieving[] = `listRelatives -p $sel[1]`;
+    string $ctrlTwoRec = $ctrlTwoRecieving[0];
+    
+    print($ctrlOneGiving);
+    print($ctrlTwoRec);
+        if (`attributeQuery -n "pSphere2" -ex "Translate_Switch"` == 0 && `attributeQuery -n "pSphere2" -ex "Rotate_Switch"` == 0)
+        {
+            AddConstraintSwitch($ctrlOneGiving); 
+        }
+
+    select -add $ctrlTwoRecieving;
+    SplitParentConstraints($ctrlTwoRec);
+    LinkConstraints($ctrlOneGiving, $rotateSwitchAttrName, ($ctrlTwoRec + "_RotateConstraint"), ($ctrlOneGiving + "W0"));
+    LinkConstraints($ctrlOneGiving, $translateSwitchAttrName, ($ctrlTwoRec + "_TranslateConstraint"), ($ctrlOneGiving + "W0"));
+}
+

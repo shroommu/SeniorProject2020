@@ -17,4 +17,5 @@ MonoBehaviour:
   rightJoystickXName: Con2 JoyR Horiz
   rightJoystickYName: Con2 JoyR Vert
   aButtonName: Con2 A Button
+  bButtonName: Con2 B Button
   l3ButtonName: Con2 L3 Button

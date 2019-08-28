@@ -1,0 +1,77 @@
+proc StretchyIKSetup()
+{
+    
+    // List the First [0] and Last [1] Joints in the selection that you want to set up stretchy IK for
+    string $armSels[] = `ls - sl` ;
+    //Declare Variables
+    float $firstJointPos[] = `xform -q -ws -t $armSels[0]`;
+    float $secondJointPos[] = `xform -q -ws -t $armSels[1]`;
+    float $lastJointPos[] = `xform -q -ws -t $armSels[2]`;
+    float $secondJointPosLocal[] = `xform -q -t $armSels[1]`;
+    float $lastJointPosLocal[] = `xform -q -t $armSels[2]`;
+
+
+    
+
+    //Create an IK handle on first and last Joints.
+    string $ikName[] = `ikHandle -sj $armSels[0] -ee $armSels[2]`;
+    
+    //Create locators for the first and last joint. 
+    string $jnt1Loc[] = `spaceLocator -p 0 0 0`;
+    move $firstJointPos[0] $firstJointPos[1] $firstJointPos[2];
+    string $jnt2Loc[] = `spaceLocator -p 0 0 0`;
+    move $lastJointPos[0] $lastJointPos[1] $lastJointPos[2];
+    string $jnt1LocShape[] = (`listRelatives -s $jnt1Loc`);
+    string $jnt2LocShape[] = `listRelatives -s $jnt2Loc`;
+    
+    //create a control for the IK handle, give it a stretchy attribute.
+    //this is dirty. fix it. 
+    circle -n "testCircle" -c 0 0 0;
+    addAttr -at "float" -ln "Stretchy" -keyable on;
+    move -ws $lastJointPos[0] $lastJointPos[1] $lastJointPos[2];
+    performFreezeTransformations(0);
+    
+    //create a "Distance between" Node for... well. getting the distance between the two nodes. 
+   //create all of these nodes for all the different things we need to set up for the system.
+    string $distanceTest = `shadingNode -asUtility distanceBetween`;
+    string $arm01DistanceNode = `shadingNode -asUtility multiplyDivide`;
+    setAttr ($arm01DistanceNode + ".input1X") $secondJointPosLocal[0];
+    string $arm02DistanceNode = `shadingNode -asUtility multiplyDivide`;
+    setAttr ($arm02DistanceNode + ".input1X") $lastJointPosLocal[0];
+    string $chainLengthPMA = `shadingNode -asUtility plusMinusAverage`;
+    string $distanceScalar = `shadingNode -asUtility multiplyDivide`;
+    setAttr ($distanceScalar + ".operation") 2;
+    string $stretchCondition = `shadingNode -asUtility condition`;
+    setAttr ($stretchCondition + ".operation") 2;
+    string $colorBlendNode = `shadingNode -asUtility blendColors`;
+    setAttr ($colorBlendNode + ".color2R") 1;
+    string $arm01ScaleMD = `shadingNode -asUtility multiplyDivide`;
+    string $arm02ScaleMD = `shadingNode -asUtility multiplyDivide`;
+
+
+    // connect the Attributes
+    LinkConstraints ($jnt1LocShape[0], "worldPosition[0]", $distanceTest, "point1");
+    LinkConstraints ($jnt2LocShape[0], "worldPosition[0]", $distanceTest, "point2");
+    LinkConstraints ($arm01DistanceNode, "outputX" , $chainLengthPMA, "input1D[0]");
+    LinkConstraints ($arm02DistanceNode, "outputX" , $chainLengthPMA, "input1D[1]");
+    LinkConstraints ($chainLengthPMA, "output1D", $distanceScalar, "input2X");
+    LinkConstraints ($distanceTest, "distance", $distanceScalar, "input1X");
+    LinkConstraints ($distanceTest, "distance", $stretchCondition, "firstTerm");
+    LinkConstraints ($chainLengthPMA, "output1D", $stretchCondition, "secondTerm");
+    LinkConstraints ($distanceScalar, "outputX", $stretchCondition, "colorIfTrueR");
+    LinkConstraints ($stretchCondition, "outColorR", $colorBlendNode, "color1R");
+    LinkConstraints ($arm01DistanceNode, "outputX" , $arm01ScaleMD, "input1X");
+    LinkConstraints ($arm02DistanceNode, "outputX" , $arm02ScaleMD, "input1X");
+    LinkConstraints ($colorBlendNode, "outputR" , $arm01ScaleMD, "input2X");
+    LinkConstraints ($colorBlendNode, "outputR" , $arm02ScaleMD, "input2X");
+    LinkConstraints ($arm01ScaleMD, "outputX" , $armSels[1], "translateX");
+    LinkConstraints ($arm02ScaleMD, "outputX" , $armSels[2], "translateX");
+    LinkConstraints ("testCircle", "Stretchy" , $colorBlendNode, "blender");
+
+    
+}
+
+proc LinkConstraints (string $objName, string $attributeName, string $constraintName, string $constraintAtt)
+{
+    connectAttr -f ($objName + "." + $attributeName) ($constraintName + "." + $constraintAtt);
+}
