@@ -10,8 +10,15 @@ public class SpearStab : MonoBehaviour
     public float timeBetweenAttacks = 1.0f;
 
     private bool canAttack = true;
+    private HurtboxManager hbm;
 
     private IEnumerator ct;
+
+    void Start() 
+    {
+        hbm = GetComponent<HurtboxManager>();
+    }
+
     public void Stab()
     {
         print("Stab");
@@ -33,24 +40,30 @@ public class SpearStab : MonoBehaviour
         {
             if(attackNum == 0)
             {
+                hbm.EnableHurtbox();
                 Stab();
                 ct = ComboTimer();
                 StartCoroutine(ct);
                 attackNum++;
                 StartCoroutine(WaitBetweenAttacks());
+                hbm.DisableHurtbox();
             }
             else if (attackNum == 1)
             {
+                hbm.EnableHurtbox();
                 Slash();
                 attackNum++;
                 StartCoroutine(WaitBetweenAttacks());
+                hbm.DisableHurtbox();
             }
             else
             {
+                hbm.EnableHurtbox();
                 Swing();
                 attackNum = 0;
                 StopCoroutine(ct);
                 StartCoroutine(WaitBetweenAttacks());
+                hbm.DisableHurtbox();
             }
         }
     }
