@@ -17,5 +17,6 @@ MonoBehaviour:
   rightJoystickXName: Mouse Horiz
   rightJoystickYName: Mouse Vert
   aButtonName: Keyboard Jump
-  bButtonName: Keyboard Attack
+  bButtonName: Keyboard Attack 1
+  xButtonName: Keyboard Attack 2
   l3ButtonName: Keyboard Sprint/Walk
