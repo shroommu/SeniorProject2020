@@ -16,9 +16,12 @@ public class InputManager : MonoBehaviour {
 	public bool l3pressed = false;
 	public bool xButtonPressed = false;
 
+	public bool isGrounded = true;
+
 	private bool canGetInput = true;
 
 	public UnityEvent attack1Event;
+	public UnityEvent jumpAttack;
 	public UnityEvent attack2TrueEvent;
 	public UnityEvent attack2FalseEvent;
 	public UnityEvent sprintEvent;
@@ -42,7 +45,15 @@ public class InputManager : MonoBehaviour {
 
 			if(Input.GetButtonDown(currentInputType.bButtonName))
 			{
-				attack1Event.Invoke();
+				if(isGrounded)
+				{
+					attack1Event.Invoke();
+				}
+				else
+				{
+					jumpAttack.Invoke();
+				}
+				
 			}
 
 			if(Input.GetButtonDown(currentInputType.xButtonName))

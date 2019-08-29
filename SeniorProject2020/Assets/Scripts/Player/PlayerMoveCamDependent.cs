@@ -10,9 +10,6 @@ public class PlayerMoveCamDependent : MonoBehaviour
 	private float baseSpeed;
 	public float jumpSpeed = 1;
 
-	public bool isJumping = false;
-	public bool isGrounded = true;
-
     public GameObject orbitCamera;
 
 	//private PlayerAnim playerAnim;
@@ -71,17 +68,16 @@ public class PlayerMoveCamDependent : MonoBehaviour
 
 	public void Jump()
 	{
-		if(isGrounded)
+		if(inputManager.isGrounded)
 		{
 			rb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
-			isGrounded = false;
+			inputManager.isGrounded = false;
 			//playerAnim.Jump();
 		}
 	}
 
 	void OnCollisionStay(Collision other)
 	{
-		isGrounded = true;
-		isJumping = false;
+		inputManager.isGrounded = true;
 	}
 }

@@ -53,6 +53,7 @@ public class SpearThrow : MonoBehaviour
             spearRB.AddForce(spear.transform.forward * returnSpeed);
             yield return null;
         }
+        
         canThrow = true;
         spearRB.useGravity = false;
         spearRB.isKinematic = true;
