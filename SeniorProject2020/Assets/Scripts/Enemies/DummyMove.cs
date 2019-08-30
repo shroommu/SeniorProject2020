@@ -18,14 +18,14 @@ public class DummyMove : MonoBehaviour
     private void Update()
     {
         Vector3 newPos = transform.position;
-        newPos.x += Time.deltaTime * speed;
+        newPos.x += Time.deltaTime * dummySpeed;
         transform.position = newPos;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Vector3 newRot = transform.rotation.eulerAngles;
-        
+        print("colliding");
+        dummySpeed = -dummySpeed;
     }
 
 
