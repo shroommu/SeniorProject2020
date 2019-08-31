@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ed99c19797fec4b8190c55fc8206c5, type: 3}
   m_Name: Keyboard Input
   m_EditorClassIdentifier: 
-  leftJoystickXName: 
-  leftJoystickYName: 
-  rightJoystickXName: 
-  rightJoystickYName: 
+  leftJoystickXName: Keyboard Horiz
+  leftJoystickYName: Keyboard Vert
+  rightJoystickXName: Mouse Horiz
+  rightJoystickYName: Mouse Vert
+  aButtonName: Keyboard Jump
+  bButtonName: Keyboard Attack 1
+  xButtonName: Keyboard Attack 2
+  l3ButtonName: Keyboard Sprint/Walk
