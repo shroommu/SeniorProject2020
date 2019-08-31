@@ -21,7 +21,7 @@ public class FireProjectile : MonoBehaviour
     public void Fire()
     {
         GameObject projectile = Instantiate(currentProjectile, currentFirePoint.transform.position, currentFirePoint.transform.rotation);
-        projectile.GetComponent<Rigidbody>().AddForce(projectileSpeed * currentFirePoint.transform.forward);
+        projectile.GetComponent<Projectile>().StartMove();
     }
 
     public void ChangeProjectile(int projectileNum)
