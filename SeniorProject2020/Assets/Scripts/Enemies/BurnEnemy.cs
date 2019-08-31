@@ -16,10 +16,12 @@ public class BurnEnemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Fireball")
         {
-            //initial damage here
-            Destroy(other.gameObject.GetComponent<Rigidbody>());
+            health.ChangeHealth(-other.gameObject.GetComponent<FireballData>().hitDamage);
+            other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             other.gameObject.transform.position = other.contacts[0].point;
             other.transform.parent = transform;
+            other.gameObject.GetComponent<FireballData>().enemyHit = gameObject;
             StartBurn(other.gameObject);
         }
     }
@@ -32,13 +34,16 @@ public class BurnEnemy : MonoBehaviour
     IEnumerator Burn(GameObject other)
     {   
         int tempBurnTime = burnTime;
-        while(tempBurnTime > 0)
+        while(tempBurnTime > 0 && other != null)
         {
             yield return new WaitForSeconds(1);
             print("burning some more");
-            //secondary damage here
+            health.ChangeHealth(-other.GetComponent<FireballData>().burnDamage);
             tempBurnTime--;
         }
-        Destroy(other);
+        if(other != null)
+        {
+            Destroy(other);
+        }
     }
 }

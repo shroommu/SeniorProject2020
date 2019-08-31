@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 18069372}
   - component: {fileID: 18069371}
   m_Layer: 0
-  m_Name: Cylinder (2)
+  m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18069370}
   m_LocalRotation: {x: -0.70952135, y: -0, z: -0, w: 0.70468396}
-  m_LocalPosition: {x: -37.24, y: 8.86, z: 10.66}
+  m_LocalPosition: {x: -37.24, y: 11.049999, z: 10.650001}
   m_LocalScale: {x: 2.783778, y: 0.29630536, z: 2.783778}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8748,7 +8748,7 @@ GameObject:
   - component: {fileID: 338657230}
   - component: {fileID: 338657229}
   m_Layer: 0
-  m_Name: Cylinder (4)
+  m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8821,7 +8821,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338657228}
   m_LocalRotation: {x: -0.70952135, y: -0, z: -0, w: 0.70468396}
-  m_LocalPosition: {x: -41.18, y: 4.97, z: 10.69}
+  m_LocalPosition: {x: -41.18, y: 7.16, z: 10.68}
   m_LocalScale: {x: 2.783778, y: 0.29630536, z: 2.783778}
   m_Children: []
   m_Father: {fileID: 0}
@@ -22686,7 +22686,7 @@ GameObject:
   - component: {fileID: 654902971}
   - component: {fileID: 654902970}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22759,7 +22759,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654902969}
   m_LocalRotation: {x: -0.70952135, y: -0, z: -0, w: 0.70468396}
-  m_LocalPosition: {x: -52.58, y: 8.86, z: 10.66}
+  m_LocalPosition: {x: -52.58, y: 11.049999, z: 10.650001}
   m_LocalScale: {x: 2.783778, y: 0.29630536, z: 2.783778}
   m_Children: []
   m_Father: {fileID: 0}
@@ -33207,7 +33207,7 @@ GameObject:
   - component: {fileID: 1052169215}
   - component: {fileID: 1052169214}
   m_Layer: 0
-  m_Name: Cylinder (1)
+  m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33280,7 +33280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052169213}
   m_LocalRotation: {x: -0.70952135, y: -0, z: -0, w: 0.70468396}
-  m_LocalPosition: {x: -44.67, y: 8.86, z: 10.66}
+  m_LocalPosition: {x: -44.67, y: 11.049999, z: 10.650001}
   m_LocalScale: {x: 2.783778, y: 0.29630536, z: 2.783778}
   m_Children: []
   m_Father: {fileID: 0}
@@ -39264,7 +39264,7 @@ GameObject:
   - component: {fileID: 1129745307}
   m_Layer: 0
   m_Name: head
-  m_TagString: Untagged
+  m_TagString: Spear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47682,7 +47682,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1213723547}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.65
   m_Height: 2.78
   m_Direction: 1
@@ -47754,7 +47754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ece00de0b319a845b8ca085b6d1d1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burnTime: 3
+  burnTime: 5
   health: {fileID: 0}
 --- !u!114 &1213723559
 MonoBehaviour:
@@ -49024,7 +49024,7 @@ GameObject:
   - component: {fileID: 1356149074}
   - component: {fileID: 1356149073}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: DummyMoveTrigger
   m_TagString: DummyTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51110,7 +51110,7 @@ GameObject:
   - component: {fileID: 1409293047}
   - component: {fileID: 1409293046}
   m_Layer: 0
-  m_Name: Cylinder (3)
+  m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51183,7 +51183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409293045}
   m_LocalRotation: {x: -0.70952135, y: -0, z: -0, w: 0.70468396}
-  m_LocalPosition: {x: -49.05, y: 4.97, z: 10.69}
+  m_LocalPosition: {x: -49.05, y: 7.16, z: 10.68}
   m_LocalScale: {x: 2.783778, y: 0.29630536, z: 2.783778}
   m_Children: []
   m_Father: {fileID: 0}
@@ -61469,7 +61469,7 @@ GameObject:
   - component: {fileID: 1589549251}
   - component: {fileID: 1589549250}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Side Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67906,7 +67906,7 @@ GameObject:
   - component: {fileID: 1709364689}
   - component: {fileID: 1709364688}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DummyMoveTrigger
   m_TagString: DummyTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69354,7 +69354,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1846464355}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.65
   m_Height: 2.78
   m_Direction: 1
@@ -69443,7 +69443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ece00de0b319a845b8ca085b6d1d1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burnTime: 3
+  burnTime: 5
   health: {fileID: 0}
 --- !u!114 &1846464367
 MonoBehaviour:
@@ -69470,9 +69470,10 @@ GameObject:
   - component: {fileID: 1941034312}
   - component: {fileID: 1941034313}
   - component: {fileID: 1941034314}
+  - component: {fileID: 1941034315}
   m_Layer: 0
   m_Name: spear
-  m_TagString: Untagged
+  m_TagString: Spear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69537,6 +69538,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: {fileID: 1129745300}
   tail: {fileID: 2067361359}
+--- !u!114 &1941034315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941034310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2ce3f6bf300f943a0e216b947cc225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeDamage: 1
+  rangedDamage: 5
+  jumpDamage: 10
+  fireDamage: 20
 --- !u!1 &1950481824
 GameObject:
   m_ObjectHideFlags: 0
@@ -69550,7 +69567,7 @@ GameObject:
   - component: {fileID: 1950481826}
   - component: {fileID: 1950481825}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: RearWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69622,8 +69639,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950481824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -45.21, y: 6.65, z: 11.29}
-  m_LocalScale: {x: 27.650974, y: 12.02751, z: 1}
+  m_LocalPosition: {x: -45.21, y: 5.81, z: 11.29}
+  m_LocalScale: {x: 27.650974, y: 20.32168, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -71110,7 +71127,7 @@ GameObject:
   - component: {fileID: 2006599419}
   - component: {fileID: 2006599418}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Side Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81461,7 +81478,7 @@ GameObject:
   - component: {fileID: 2067361361}
   m_Layer: 0
   m_Name: tail
-  m_TagString: Untagged
+  m_TagString: Spear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81685,7 +81702,7 @@ GameObject:
   - component: {fileID: 2093326236}
   m_Layer: 0
   m_Name: shaft
-  m_TagString: Untagged
+  m_TagString: Spear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82083,7 +82100,7 @@ GameObject:
   - component: {fileID: 2113128449}
   - component: {fileID: 2113128448}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82647,7 +82664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ec380d238e5384397c880523333448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentInputType: {fileID: 11400000, guid: 589f2c5088c0d3342ae3a40f08a6dd8b, type: 2}
+  currentInputType: {fileID: 11400000, guid: 7cb3aaf3b2cc6fe4cbe2277251236b69, type: 2}
   l3pressed: 0
   xButtonPressed: 0
   isGrounded: 1
@@ -82841,7 +82858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ec380d238e5384397c880523333448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentInputType: {fileID: 11400000, guid: 7cb3aaf3b2cc6fe4cbe2277251236b69, type: 2}
+  currentInputType: {fileID: 11400000, guid: 589f2c5088c0d3342ae3a40f08a6dd8b, type: 2}
   l3pressed: 0
   xButtonPressed: 0
   isGrounded: 1
