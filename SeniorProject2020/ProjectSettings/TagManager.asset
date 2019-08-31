@@ -8,6 +8,7 @@ TagManager:
   - DummyTrigger
   - Fireball
   - PushCollider
+  - Spear
   layers:
   - Default
   - TransparentFX

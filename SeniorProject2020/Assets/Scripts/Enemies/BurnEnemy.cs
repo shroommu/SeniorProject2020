@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BurnEnemy : MonoBehaviour
 {
-    public int burnTime = 3;
+    public int burnTime = 5;
     public Health health;
 
     private void Start()
@@ -12,14 +12,15 @@ public class BurnEnemy : MonoBehaviour
         health = GetComponent<Health>();
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Fireball")
         {
-            //initial damage here
-            Destroy(other.gameObject.GetComponent<Rigidbody>());
-            other.gameObject.transform.position = other.contacts[0].point;
+            health.ChangeHealth(-other.gameObject.GetComponent<FireballData>().hitDamage);
+
+            other.GetComponent<Projectile>().canMove = false;
             other.transform.parent = transform;
+            other.gameObject.GetComponent<FireballData>().enemyHit = gameObject;
             StartBurn(other.gameObject);
         }
     }
@@ -32,13 +33,16 @@ public class BurnEnemy : MonoBehaviour
     IEnumerator Burn(GameObject other)
     {   
         int tempBurnTime = burnTime;
-        while(tempBurnTime > 0)
+        while(tempBurnTime > 0 && other != null)
         {
             yield return new WaitForSeconds(1);
             print("burning some more");
-            //secondary damage here
+            health.ChangeHealth(-other.GetComponent<FireballData>().burnDamage);
             tempBurnTime--;
         }
-        Destroy(other);
+        if(other != null)
+        {
+            Destroy(other);
+        }
     }
 }

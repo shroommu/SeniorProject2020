@@ -73,17 +73,14 @@ public class InputManager : MonoBehaviour {
 			if(Input.GetButtonDown(currentInputType.l3ButtonName))
 			{
 				l3pressed = !l3pressed;
-				print(l3pressed);
 
 				if(l3pressed)
 				{
 					sprintEvent.Invoke();
-					print("sprinting");
 				}
 				else
 				{
 					walkEvent.Invoke();
-					print("walking");
 				}
 				
 			}
