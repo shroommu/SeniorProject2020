@@ -4,30 +4,38 @@ using UnityEngine;
 
 public class DummyMove : MonoBehaviour
 {
-
     private Rigidbody rb;
-    public float dummySpeed = 100;
+    public float dummySpeed = 1;
+    public bool canMove;
 
     private void Start() 
     {
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * dummySpeed);
-        print("Moving Dummy");
-    }
-
-    private void Update()
-    {
-        Vector3 newPos = transform.position;
-        newPos.x += Time.deltaTime * dummySpeed;
-        transform.position = newPos;
+        StartMove();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        print("colliding");
-        dummySpeed = -dummySpeed;
+        if(other.tag == "DummyTrigger")
+        {
+            dummySpeed = -dummySpeed;
+        }
     }
 
+    public void StartMove()
+    {
+        canMove = true;
+        StartCoroutine(Move());
+    }
 
-
+    IEnumerator Move()
+    {
+        while(canMove)
+        {
+            Vector3 newPos = transform.forward * dummySpeed;
+            rb.AddForce(newPos);
+            yield return new WaitForFixedUpdate();
+        }
+        rb.velocity = Vector3.zero;
+    }
 }
