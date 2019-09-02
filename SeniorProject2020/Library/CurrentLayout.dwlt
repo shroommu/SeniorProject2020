@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 7}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 422}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -70,10 +70,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 915, y: 372}
-  m_MaxSize: {x: 22010, y: 14022}
+  m_MinSize: {x: 909, y: 372}
+  m_MaxSize: {x: 22004, y: 14022}
   vertical: 0
-  controlID: 58
+  controlID: 98
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -119,8 +119,8 @@ MonoBehaviour:
     y: 0
     width: 215
     height: 642
-  m_MinSize: {x: 202, y: 222}
-  m_MaxSize: {x: 4002, y: 4022}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -174,7 +174,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 422}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &8
 MonoBehaviour:
@@ -240,10 +240,10 @@ MonoBehaviour:
     y: 0
     width: 1643
     height: 947
-  m_MinSize: {x: 640, y: 372}
-  m_MaxSize: {x: 18010, y: 14022}
+  m_MinSize: {x: 634, y: 372}
+  m_MaxSize: {x: 18004, y: 14022}
   vertical: 1
-  controlID: 59
+  controlID: 99
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -266,10 +266,10 @@ MonoBehaviour:
     y: 0
     width: 1643
     height: 642
-  m_MinSize: {x: 640, y: 272}
-  m_MaxSize: {x: 18010, y: 10022}
+  m_MinSize: {x: 634, y: 272}
+  m_MaxSize: {x: 18004, y: 10022}
   vertical: 0
-  controlID: 60
+  controlID: 100
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -289,8 +289,8 @@ MonoBehaviour:
     y: 0
     width: 1041
     height: 642
-  m_MinSize: {x: 204, y: 222}
-  m_MaxSize: {x: 4004, y: 4022}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -362,20 +362,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Player/YoungerGirl
+    - Assets/Scripts/Player
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Player/YoungerGirl
+  - Assets/Scripts/Player
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\mould\Documents\SP2020\SeniorProject2020
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ae300000
-    m_LastClickedID: 12462
-    m_ExpandedIDs: 00000000182c0000aa2e0000fa2f000006300000aa30000082360000103c0000143c0000d03f000000ca9a3b
+    m_SelectedIDs: a2310000
+    m_LastClickedID: 12706
+    m_ExpandedIDs: 00000000482c0000522e0000462f000086300000c6300000d4300000e6300000a2310000c837000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -403,7 +403,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000182c0000aa2e0000fa2f000006300000aa30000082360000
+    m_ExpandedIDs: 00000000482c0000522e0000462f000086300000c6300000d4300000e6300000a2310000c8370000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -523,9 +523,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: d0330000
-      m_LastClickedID: 13264
-      m_ExpandedIDs: aee9ffffb0ecffff8cfbffffd033000026350000
+      m_SelectedIDs: 3c360000
+      m_LastClickedID: 13884
+      m_ExpandedIDs: 8cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -616,13 +616,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.14211112, y: -0.05431588, z: 0.007812043, w: -0.9883366}
+    m_Target: {x: -0.11700957, y: -0.023238922, z: 0.0027389405, w: -0.992864}
     speed: 2
-    m_Value: {x: -0.14359233, y: -0.05430367, z: 0.007893448, w: -0.9881145}
+    m_Value: {x: -0.11700854, y: -0.023238717, z: 0.0027389163, w: -0.99285525}
   m_Size:
-    m_Target: 15.920881
+    m_Target: 25.789343
     speed: 2
-    m_Value: 15.920881
+    m_Value: 25.789343
   m_Ortho:
     m_Target: 0
     speed: 2
