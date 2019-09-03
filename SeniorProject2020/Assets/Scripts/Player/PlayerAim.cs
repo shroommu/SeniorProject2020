@@ -4,5 +4,15 @@ using UnityEngine;
 
 public class PlayerAim : MonoBehaviour
 {
-    
+    private GameObject orbitCam;
+
+    void Start()
+    {
+        orbitCam = GetComponent<PlayerData>().orbitCamera;
+    }
+
+    public void Aim()
+    {
+        orbitCam.GetComponent<AimCamera>().StartAim();
+    }
 }

@@ -22,6 +22,8 @@ public class InputManager : MonoBehaviour {
 
 	public UnityEvent attack1Event;
 	public UnityEvent jumpAttack;
+	public UnityEvent attack2AimEvent;
+	public UnityEvent attack2FireEvent;
 	public UnityEvent attack2TrueEvent;
 	public UnityEvent attack2FalseEvent;
 	public UnityEvent sprintEvent;
@@ -56,7 +58,7 @@ public class InputManager : MonoBehaviour {
 				
 			}
 
-			if(Input.GetButtonDown(currentInputType.xButtonName))
+			/*if(Input.GetButtonDown(currentInputType.xButtonName))
 			{
 				xButtonPressed = !xButtonPressed;
 
@@ -68,6 +70,16 @@ public class InputManager : MonoBehaviour {
 				{
 					attack2FalseEvent.Invoke();
 				}
+			}*/
+
+			if(Input.GetButton(currentInputType.xButtonName))
+			{
+				attack2AimEvent.Invoke();
+			}
+
+			if(Input.GetButtonUp(currentInputType.xButtonName))
+			{
+				attack2FireEvent.Invoke();
 			}
 
 			if(Input.GetButtonDown(currentInputType.l3ButtonName))
