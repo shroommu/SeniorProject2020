@@ -12,6 +12,8 @@ public class SpearThrow : MonoBehaviour
     public bool canThrow = true;
     public bool returning = false;
 
+    private bool goToPointRunning = false;
+
     public void Start()
     {
         spearRB = spear.GetComponent<Rigidbody>();
@@ -21,7 +23,6 @@ public class SpearThrow : MonoBehaviour
     {
         if(canThrow)
         {
-            print("throwing");
             spear.transform.parent = null;
             spear.GetComponent<SpearStick>().canStick = true;
 
@@ -41,12 +42,19 @@ public class SpearThrow : MonoBehaviour
             spearRB.useGravity = true;
             spearRB.isKinematic = false;
             returning = true;
-            StartCoroutine(GoToPoint());
+
+            if(!goToPointRunning)
+            {
+                StartCoroutine(GoToPoint());
+            }
+            
         }
     }
 
     IEnumerator GoToPoint()
     {
+        goToPointRunning = true;
+
         while(returning)
         {
             spear.transform.LookAt(hand.transform.position, -Vector3.up);
@@ -60,5 +68,7 @@ public class SpearThrow : MonoBehaviour
         spear.transform.position = hand.transform.position;
         spear.transform.rotation = hand.transform.rotation;
         spear.transform.parent = hand.transform;
+        
+        goToPointRunning = false;
     }
 }

@@ -7,6 +7,10 @@ public class AimCamera : MonoBehaviour
     public GameObject shoulderPos;
     public GameObject playerTorso;
     public InputManager inputManager;
+
+    private Vector3 lastCameraPos;
+
+    public float camSpeed = 1;
     
     public bool canAim;
 
@@ -24,12 +28,21 @@ public class AimCamera : MonoBehaviour
         if(!aimRunning)
         {
             GetComponent<OrbitingCameraController>().canOrbit = false;
-            transform.position = shoulderPos.transform.position;
-            transform.rotation = shoulderPos.transform.rotation;
+            lastCameraPos = transform.position;
+            //transform.position = shoulderPos.transform.position;
+            //transform.rotation = shoulderPos.transform.rotation;
+            StartCoroutine(LerpToPoint(transform.position, shoulderPos.transform.position));
             transform.parent = shoulderPos.transform;
             canAim = true;
             StartCoroutine(Aim());
         }
+    }
+
+    public void StopAim()
+    {
+        canAim = false;
+        StartCoroutine(LerpToPoint(transform.position, lastCameraPos));
+        transform.parent = null;
     }
 
     IEnumerator Aim()
@@ -50,6 +63,22 @@ public class AimCamera : MonoBehaviour
             yield return null;
         }
         aimRunning = false;
+    }
+
+    IEnumerator LerpToPoint(Vector3 startPos, Vector3 endPos)
+    {
+        float interp = 0;
+        while (interp < 1)
+        {
+            transform.position = Vector3.Lerp(startPos, endPos, interp);
+            interp += Time.deltaTime * camSpeed;
+            yield return null;
+        }
+        if(!canAim)
+        {
+            GetComponent<OrbitingCameraController>().StartOrbit();
+        }
+
     }
 
     public static float ClampAngle(float angle, float min, float max)
