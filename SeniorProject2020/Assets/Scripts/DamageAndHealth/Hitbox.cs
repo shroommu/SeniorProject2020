@@ -9,8 +9,7 @@ public class Hitbox : MonoBehaviour
        if (other.GetComponent<Hurtbox>() && other.GetComponent<Hurtbox>().enabled == true)
        {
            Health health = GetComponent<Health>();
-           health.currentHealth -= other.GetComponent<Hurtbox>().damageAmount;
-           print(health.currentHealth);
+           health.ChangeHealth(-other.GetComponent<Hurtbox>().damageAmount);
        }
    }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HurtboxManager : MonoBehaviour
 {
-    public GameObject hurtbox;
+    public GameObject[] hurtboxes;
 
     private void Start()
     {
@@ -13,13 +13,19 @@ public class HurtboxManager : MonoBehaviour
 
     public void EnableHurtbox()
     {
-        print("enabling");
-        hurtbox.GetComponent<Hurtbox>().enabled = true;
+        print("enabling hurtboxes");
+        foreach (GameObject hurtbox in hurtboxes)
+        {
+            hurtbox.GetComponent<Hurtbox>().enabled = true;
+        }
     }
 
     public void DisableHurtbox()
     {
-        print("disabling");
-        hurtbox.GetComponent<Hurtbox>().enabled = false;
+        print("disabling hurtboxes");
+        foreach (GameObject hurtbox in hurtboxes)
+        {
+            hurtbox.GetComponent<Hurtbox>().enabled = false;
+        }
     }
 }
