@@ -15,4 +15,11 @@ public class PlayerAim : MonoBehaviour
     {
         orbitCam.GetComponent<AimCamera>().StartAim();
     }
+
+    public void StopAim()
+    {
+        orbitCam.GetComponent<AimCamera>().canAim = false;
+        orbitCam.GetComponent<AimCamera>().StopAim();
+        //orbitCam.GetComponent<OrbitingCameraController>().StartOrbit();
+    }
 }
