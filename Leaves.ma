@@ -1,6 +1,6 @@
 //Maya ASCII 2018 scene
 //Name: Leaves.ma
-//Last modified: Mon, Sep 09, 2019 11:03:52 AM
+//Last modified: Mon, Sep 09, 2019 12:40:11 PM
 //Codeset: 1252
 requires maya "2018";
 currentUnit -l centimeter -a degree -t film;
@@ -13,8 +13,8 @@ fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "7E05A660-4461-7FD8-0024-BD91BE1118E1";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -2.3119308255488256 10.339856633317375 9.9334798331349532 ;
-	setAttr ".r" -type "double3" -47.738352729875977 -2.200000000000049 0 ;
+	setAttr ".t" -type "double3" -6.1000961762087567 8.1540289446310652 11.106420391337046 ;
+	setAttr ".r" -type "double3" -35.738352729876482 -21.400000000000048 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "DFA6CA2C-4ABC-1C78-7854-D5A64538A3C4";
 	setAttr -k off ".v" no;
