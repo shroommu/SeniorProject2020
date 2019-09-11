@@ -26,7 +26,7 @@ public class SpearThrow : MonoBehaviour
             spear.transform.parent = null;
             spear.GetComponent<SpearStick>().canStick = true;
 
-            spearRB.useGravity = true;
+            //spearRB.useGravity = true;
             spearRB.isKinematic = false;
             spearRB.AddForce(spear.transform.forward * throwSpeed);
 

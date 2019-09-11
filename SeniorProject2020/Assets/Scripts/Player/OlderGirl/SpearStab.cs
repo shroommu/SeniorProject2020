@@ -9,6 +9,8 @@ public class SpearStab : MonoBehaviour
     public float attackTimeOut = 4.0f;
     public float timeBetweenAttacks = 1.0f;
 
+    public Animator anim;
+
     private bool canAttack = true;
     private HurtboxManager hbm;
 
@@ -21,17 +23,17 @@ public class SpearStab : MonoBehaviour
 
     public void Stab()
     {
-        print("Stab");
+        anim.SetTrigger("LeftTriggerAttack1");
     }
 
     public void Slash()
     {
-        print("Slash");
+        anim.SetTrigger("LeftTriggerAttack2");
     }
 
     public void Swing()
     {
-        print("Swing");
+        anim.SetTrigger("LeftTriggerAttack3");
     }
 
     public void Attack()

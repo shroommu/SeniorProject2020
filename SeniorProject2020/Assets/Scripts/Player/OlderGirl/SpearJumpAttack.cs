@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class SpearJumpAttack : MonoBehaviour
 {
+
+    public Animator anim;
+
     public void Attack()
     {
-        print("Jump attacking");
+        anim.SetTrigger("JumpAttack");
     }
 }

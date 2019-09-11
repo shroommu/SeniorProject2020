@@ -29,8 +29,6 @@ public class AimCamera : MonoBehaviour
         {
             GetComponent<OrbitingCameraController>().canOrbit = false;
             lastCameraPos = transform.position;
-            //transform.position = shoulderPos.transform.position;
-            //transform.rotation = shoulderPos.transform.rotation;
             StartCoroutine(LerpToPoint(transform.position, shoulderPos.transform.position));
             transform.parent = shoulderPos.transform;
             canAim = true;
