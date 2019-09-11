@@ -1,0 +1,3 @@
+Idle --- 3-160
+talking --- 161-250
+Transform --- 251-284 get up 284-300
