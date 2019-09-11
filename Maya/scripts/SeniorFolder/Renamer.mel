@@ -1,0 +1,65 @@
+proc int NumDigits(int $i)
+{
+        
+    //get the number of objects
+    
+    // >> " $i " <<
+    
+    //turn the number into a string
+    string $numberString = string($i);
+    // get the size of the string into a number
+    return size($numberString);
+}
+
+proc RenamerLoop (string $nameFormat) 
+{
+    //Declare my seleciton as an array of strings
+    string $selections[] = `ls -sl`;
+    //get how many objects are selected. Return how many digits are in that number
+    string $numSize = NumDigits(size($selections));
+        // the incramental number to add for my call
+    int $i =0;
+    //look at each selection and create the name for each
+    for ($sel in $selections)
+    {  
+        $i++;
+        // Create the name. Stop upon hitting a number and place the numerical value
+        //
+        // split string into segments
+        string $stringSegments[];
+        //Seperate my naming format
+        tokenize $nameFormat "_" $stringSegments; 
+        string $newName = "";
+        //look at each segment. if it is a number, apply 0 and the numerical value
+        for($token in $stringSegments)
+        {
+            if($token == "#")
+            {
+
+               //how many zeros to add?
+                   //the amount of digit characters in the total selection - the number of digit characters in i
+               int $numZeros = NumDigits(size($selections)) - NumDigits($i);
+               //add that many zeros
+               while($numZeros > 0 ) 
+               {
+                  $newName += "0";
+                  $numZeros--;
+               }
+               //add the number incrementally
+               $newName += string($i) + "_";
+            }
+               //else, tack on other segments in line
+            else 
+            {
+                $newName += $token + "_";
+            }
+            
+        }
+        // Get rid of trailing underscore.
+        int $endPosition = size($newName) -1;
+        string $newName2 = `substring $newName 1 $endPosition`;
+        rename $sel $newName2;
+    }  
+}
+
+RenamerLoop ("Reverse_Foot_#_Jnt")
