@@ -22,3 +22,5 @@ MonoBehaviour:
   bButtonName: Keyboard Attack 1
   xButtonName: Keyboard Attack 2
   l3ButtonName: Keyboard Sprint/Walk
+  leftClickName: Keyboard Left Click
+  rightClickName: Keyboard Right Click

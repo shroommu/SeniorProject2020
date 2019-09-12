@@ -9,6 +9,7 @@ public class AimCamera : MonoBehaviour
     public InputManager inputManager;
 
     private Vector3 lastCameraPos;
+    private Quaternion rotation;
 
     public float camSpeed = 1;
     
@@ -53,14 +54,19 @@ public class AimCamera : MonoBehaviour
 
             y = ClampAngle(y, yMinLimit, yMaxLimit);
 
-            Quaternion rotation = Quaternion.Euler(y, x, 0);
+            rotation = Quaternion.Euler(y, x, 0);
 
             transform.rotation = rotation;
-            playerTorso.transform.rotation = rotation;
+            
 
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         aimRunning = false;
+    }
+
+    private void LateUpdate()
+    {
+        playerTorso.transform.rotation = rotation;
     }
 
     IEnumerator LerpToPoint(Vector3 startPos, Vector3 endPos)
