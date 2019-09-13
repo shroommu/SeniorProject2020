@@ -16,6 +16,9 @@ public class SO_InputType : ScriptableObject
     public string bButtonName;
     public string xButtonName;
     public string l3ButtonName;
+
+    public string leftClickName;
+    public string rightClickName;
     
 
 

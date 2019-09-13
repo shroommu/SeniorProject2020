@@ -9,29 +9,31 @@ public class SpearStab : MonoBehaviour
     public float attackTimeOut = 4.0f;
     public float timeBetweenAttacks = 1.0f;
 
+    public Animator anim;
+
     private bool canAttack = true;
-    private HurtboxManager hbm;
+    //private HurtboxManager hbm;
 
     private IEnumerator ct;
 
     void Start() 
     {
-        hbm = GetComponent<HurtboxManager>();
+        //hbm = GetComponent<HurtboxManager>();
     }
 
     public void Stab()
     {
-        print("Stab");
+        anim.SetTrigger("LeftTriggerAttack1");
     }
 
     public void Slash()
     {
-        print("Slash");
+        anim.SetTrigger("LeftTriggerAttack2");
     }
 
     public void Swing()
     {
-        print("Swing");
+        anim.SetTrigger("LeftTriggerAttack3");
     }
 
     public void Attack()
@@ -40,30 +42,30 @@ public class SpearStab : MonoBehaviour
         {
             if(attackNum == 0)
             {
-                hbm.EnableHurtbox();
+                //hbm.EnableHurtbox();
                 Stab();
                 ct = ComboTimer();
                 StartCoroutine(ct);
                 attackNum++;
                 StartCoroutine(WaitBetweenAttacks());
-                hbm.DisableHurtbox();
+                //hbm.DisableHurtbox();
             }
             else if (attackNum == 1)
             {
-                hbm.EnableHurtbox();
+                //hbm.EnableHurtbox();
                 Slash();
                 attackNum++;
                 StartCoroutine(WaitBetweenAttacks());
-                hbm.DisableHurtbox();
+                //hbm.DisableHurtbox();
             }
             else
             {
-                hbm.EnableHurtbox();
+                //hbm.EnableHurtbox();
                 Swing();
                 attackNum = 0;
                 StopCoroutine(ct);
                 StartCoroutine(WaitBetweenAttacks());
-                hbm.DisableHurtbox();
+                //hbm.DisableHurtbox();
             }
         }
     }
