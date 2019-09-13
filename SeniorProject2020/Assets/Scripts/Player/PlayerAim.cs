@@ -13,9 +13,9 @@ public class PlayerAim : MonoBehaviour
         orbitCam = GetComponent<PlayerData>().orbitCamera;
     }
 
-    public void Aim()
+    public void Aim(bool rightShoulder)
     {
-        orbitCam.GetComponent<AimCamera>().StartAim();
+        orbitCam.GetComponent<AimCamera>().StartAim(rightShoulder);
         anim.SetTrigger("RightTriggerAttack");
     }
 

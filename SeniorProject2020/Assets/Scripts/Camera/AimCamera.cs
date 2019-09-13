@@ -5,6 +5,7 @@ using UnityEngine;
 public class AimCamera : MonoBehaviour
 {
     public GameObject shoulderPos;
+    public GameObject leftShoulderPos;
     public GameObject playerTorso;
     public InputManager inputManager;
 
@@ -15,7 +16,7 @@ public class AimCamera : MonoBehaviour
     
     public bool canAim;
 
-    private bool aimRunning = false;
+    public bool aimRunning = false;
 
     public float yMinLimit = -20f;
     public float yMaxLimit = 80f;
@@ -24,13 +25,22 @@ public class AimCamera : MonoBehaviour
     public float y = 0.0f;
 
 
-    public void StartAim()
+    public void StartAim(bool rightShoulder)
     {
         if(!aimRunning)
         {
             GetComponent<OrbitingCameraController>().canOrbit = false;
             lastCameraPos = transform.position;
-            StartCoroutine(LerpToPoint(transform.position, shoulderPos.transform.position));
+
+            if(rightShoulder)
+            {
+                StartCoroutine(LerpToPoint(transform.position, shoulderPos.transform.position));
+            }
+            else
+            {
+                StartCoroutine(LerpToPoint(transform.position, leftShoulderPos.transform.position));
+            }
+
             transform.parent = shoulderPos.transform;
             canAim = true;
             StartCoroutine(Aim());

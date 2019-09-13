@@ -9,6 +9,7 @@ public class Attack2AimHandler : MonoBehaviour
     public SpearThrow spearThrow;
     
     public UnityEvent aimEvent;
+    public UnityEvent returnEvent;
 
     public void Attack()
     {
@@ -16,6 +17,10 @@ public class Attack2AimHandler : MonoBehaviour
         {
             aimEvent.Invoke();
             canAim = false;
+        }
+        else
+        {
+            returnEvent.Invoke();
         }
     }
 }

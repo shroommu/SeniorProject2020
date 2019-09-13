@@ -6,9 +6,15 @@ public class OlderGirlAnimator : MonoBehaviour
 {
 
     public Animator anim;
+    public SpearThrow spearThrow;
+    public AimCamera aimCamera;
 
     public void ThrowSpear()
     {
-        anim.SetTrigger("RightTriggerUp");
+        if(spearThrow.canThrow && aimCamera.aimRunning)
+        {
+            print("Setting right trigger");
+            anim.SetTrigger("RightTriggerUp");
+        }
     }
 }
