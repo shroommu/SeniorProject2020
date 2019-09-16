@@ -9,19 +9,18 @@ public class Attack2AimHandler : MonoBehaviour
     public SpearThrow spearThrow;
     
     public UnityEvent aimEvent;
-
-    private void Start() 
-    {
-        spearThrow = GetComponent<SpearThrow>();
-    }
+    public UnityEvent returnEvent;
 
     public void Attack()
     {
         if(spearThrow.canThrow)
         {
-            print("throwing");
             aimEvent.Invoke();
             canAim = false;
+        }
+        else
+        {
+            returnEvent.Invoke();
         }
     }
 }

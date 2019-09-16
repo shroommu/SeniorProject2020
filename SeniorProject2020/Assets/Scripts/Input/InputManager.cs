@@ -28,10 +28,6 @@ public class InputManager : MonoBehaviour {
 
 	public UnityEvent attack1Event;
 	public UnityEvent jumpAttack;
-	public UnityEvent attack2AimEvent;
-	public UnityEvent attack2FireEvent;
-	public UnityEvent attack2TrueEvent;
-	public UnityEvent attack2FalseEvent;
 	public UnityEvent sprintEvent;
 	public UnityEvent walkEvent;
 	public UnityEvent jumpEvent;
@@ -54,7 +50,11 @@ public class InputManager : MonoBehaviour {
 			verticalSpeed = Input.GetAxis(currentInputType.leftJoystickYName);
 			horizontal2Speed = Input.GetAxis(currentInputType.rightJoystickXName) * cameraSensitivity;
 			vertical2Speed = Input.GetAxis(currentInputType.rightJoystickYName) * cameraSensitivity;
-			triggerSpeed = Input.GetAxis(currentInputType.triggersName);
+
+			if(currentInputType.inputName != "Keyboard")
+			{
+				triggerSpeed = Input.GetAxis(currentInputType.triggersName);
+			}
 
 			if(Input.GetButtonDown(currentInputType.bButtonName))
 			{
@@ -68,42 +68,57 @@ public class InputManager : MonoBehaviour {
 				}
 			}
 
-			if(GetTriggerSpeed() < 0)
+			if(currentInputType.inputName == "Keyboard")
 			{
-				leftTriggerDown = true;
-				leftTriggerDownEvent.Invoke();
-			}
-			
-			if(GetTriggerSpeed() > 0)
-			{
-				rightTriggerDown = true;
-				rightTriggerDownEvent.Invoke();
-			}
-
-			if(GetTriggerSpeed() == 0)
-			{
-				if(rightTriggerDown)
+				if(Input.GetButtonDown(currentInputType.leftClickName))
 				{
-					rightTriggerUpEvent.Invoke();
-					rightTriggerDown = false;
+					leftTriggerDownEvent.Invoke();
 				}
-				if(leftTriggerDown)
+				
+				if(Input.GetButtonDown(currentInputType.rightClickName))
+				{
+					rightTriggerDownEvent.Invoke();
+				}
+				
+				if(Input.GetButtonUp(currentInputType.leftClickName))
 				{
 					leftTriggerUpEvent.Invoke();
-					leftTriggerDown = false;
-				}				
+				}
+				
+				if(Input.GetButtonUp(currentInputType.rightClickName))
+				{
+					rightTriggerUpEvent.Invoke();
+				}
 			}
-
-			if(Input.GetButton(currentInputType.xButtonName))
+			else
 			{
-				attack2AimEvent.Invoke();
-			}
+				if(GetTriggerSpeed() < 0)
+				{
+					leftTriggerDown = true;
+					leftTriggerDownEvent.Invoke();
+				}
+				
+				if(GetTriggerSpeed() > 0)
+				{
+					rightTriggerDown = true;
+					rightTriggerDownEvent.Invoke();
+				}
 
-			if(Input.GetButtonUp(currentInputType.xButtonName))
-			{
-				attack2FireEvent.Invoke();
+				if(GetTriggerSpeed() == 0)
+				{
+					if(rightTriggerDown)
+					{
+						rightTriggerUpEvent.Invoke();
+						rightTriggerDown = false;
+					}
+					if(leftTriggerDown)
+					{
+						leftTriggerUpEvent.Invoke();
+						leftTriggerDown = false;
+					}				
+				}
 			}
-
+			
 			if(Input.GetButtonDown(currentInputType.l3ButtonName))
 			{
 				l3pressed = !l3pressed;
