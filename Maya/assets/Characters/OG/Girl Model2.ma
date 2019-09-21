@@ -1,6 +1,6 @@
 //Maya ASCII 2018 scene
 //Name: Girl Model2.ma
-//Last modified: Sat, Aug 24, 2019 04:36:23 PM
+//Last modified: Sat, Aug 24, 2019 05:17:10 PM
 //Codeset: 1252
 requires maya "2018";
 requires -nodeType "HIKSolverNode" -nodeType "HIKCharacterNode" -nodeType "HIKFK2State"
@@ -48807,7 +48807,7 @@ createNode mesh -n "polySurfaceShape30" -p "Shoulder_Armor_strap_Geo";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 13 ".pt";
+	setAttr -s 12 ".pt";
 	setAttr ".pt[58]" -type "float3" 0 0.099292405 0 ;
 	setAttr ".pt[59]" -type "float3" 0 0.099292405 0 ;
 	setAttr ".pt[60]" -type "float3" 0 0.099292405 0 ;
@@ -51086,20 +51086,20 @@ createNode mesh -n "polySurfaceShape10" -p "Shoulder_Armor_03_Geo";
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "255BE21F-4C05-13B9-78A0-1F898917A72A";
+	rename -uid "364A8E19-4FB1-87D1-73DB-469A645C0008";
 	setAttr -s 21 ".lnk";
 	setAttr -s 21 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "23472CC7-4D38-2F69-D058-19B70C0C6FF2";
+	rename -uid "6D876A94-42AB-EE9B-0E92-738CBFFA7D7B";
 	setAttr ".bsdt[0].bscd" -type "Int32Array" 0 ;
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "62C34F19-439F-0CBE-FE19-AABB45C50CCC";
+	rename -uid "894EF34B-4377-2271-12D2-DDB3C1B75D17";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "6D2C70E2-44A3-69B3-E368-E18F457084DB";
+	rename -uid "166FC13E-4D35-943F-95C7-F4AE5BF7B26F";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "8BF31D8A-4B49-4704-7078-3D9104CAC40E";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "43E83FF0-4202-AD7E-D5A2-3F880F6C9B0B";
+	rename -uid "F77A3F92-4BBA-5EF8-68D2-EC92B215D4F2";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "8A3D5555-4D42-5CB8-9426-3E83BF4F2A13";
 	setAttr ".g" yes;
