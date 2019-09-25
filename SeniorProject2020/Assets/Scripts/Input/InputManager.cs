@@ -72,7 +72,14 @@ public class InputManager : MonoBehaviour {
 			{
 				if(Input.GetButtonDown(currentInputType.leftClickName))
 				{
-					leftTriggerDownEvent.Invoke();
+					if(isGrounded)
+					{
+						leftTriggerDownEvent.Invoke();
+					}
+					else
+					{
+						jumpAttack.Invoke();
+					}
 				}
 				
 				if(Input.GetButtonDown(currentInputType.rightClickName))
@@ -95,7 +102,15 @@ public class InputManager : MonoBehaviour {
 				if(GetTriggerSpeed() < 0)
 				{
 					leftTriggerDown = true;
-					leftTriggerDownEvent.Invoke();
+					
+					if(isGrounded)
+					{
+						leftTriggerDownEvent.Invoke();
+					}
+					else
+					{
+						jumpAttack.Invoke();
+					}
 				}
 				
 				if(GetTriggerSpeed() > 0)
