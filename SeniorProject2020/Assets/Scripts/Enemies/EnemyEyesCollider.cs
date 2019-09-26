@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyEyesCollider : MonoBehaviour
 {
     public GameObject eye;
+    public AIController aiController;
 
     private void OnTriggerStay(Collider other)
     {
@@ -14,16 +15,20 @@ public class EnemyEyesCollider : MonoBehaviour
 
             print("player in sight collider");
             RaycastHit hit;
-            //calculate angle from eye to player
-            Quaternion quat = Quaternion.FromToRotation(eye.transform.position, other.transform.position);
-            Vector3 rot = quat * transform.forward;
+            
+            Vector3 rayDirection = other.transform.position - eye.transform.position;
 
-            Debug.DrawRay(eye.transform.position, rot  * 20, Color.yellow);
-            if(Physics.Raycast(eye.transform.position, rot, out hit, 20))
+            Debug.DrawRay(eye.transform.position, rayDirection  * 20, Color.yellow);
+
+            if(Physics.Raycast(eye.transform.position, rayDirection, out hit, Mathf.Infinity))
             {
                 if(hit.collider.gameObject.GetComponent<PlayerMove>())
                 {
-                    print("found player");
+                    aiController.SawPlayer(other.gameObject);
+                }
+                else
+                {
+                    print("player obstructed");
                 }
             }
         }

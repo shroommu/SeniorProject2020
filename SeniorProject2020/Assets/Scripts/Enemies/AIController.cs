@@ -9,10 +9,12 @@ public class AIController : MonoBehaviour
     public Vector2 idleTimeRange;
     public int idleChance;
     private bool idleForSecondsRunning;
+    private FollowPlayer followPlayer;
 
     void Start()
     {
         StartController();
+        followPlayer = GetComponent<FollowPlayer>();
     }
 
     public void StartController()
@@ -48,9 +50,14 @@ public class AIController : MonoBehaviour
         idleForSecondsRunning = true;
         float rand = Random.Range(idleTimeRange.x, idleTimeRange.y);
         anim.SetBool("isPatrolling", false);
-        print("Idling");
         yield return new WaitForSeconds(rand);
         anim.SetBool("isPatrolling", true);
         idleForSecondsRunning = false;
+    }
+
+    public void SawPlayer(GameObject target)
+    {
+        followPlayer.currentTarget = target;
+        anim.SetBool("knowsPlayerLocation", true);
     }
 }
