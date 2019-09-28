@@ -10,6 +10,7 @@ public class AIController : MonoBehaviour
     public int idleChance;
     private bool idleForSecondsRunning;
     private FollowPlayer followPlayer;
+    public int numberOfAttacks;
 
     void Start()
     {
@@ -59,5 +60,16 @@ public class AIController : MonoBehaviour
     {
         followPlayer.currentTarget = target;
         anim.SetBool("knowsPlayerLocation", true);
+    }
+
+    public void RandomizeAttack()
+    {
+        int randAttack = Random.Range(1, numberOfAttacks + 1);
+        anim.SetInteger("attackNum", randAttack);
+    }
+
+    public void ResetAttackState()
+    {
+        anim.SetInteger("attackNum", 0);
     }
 }

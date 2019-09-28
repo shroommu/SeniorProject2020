@@ -9,11 +9,11 @@ public class EnemyEyesCollider : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        print("collided");
+        //print("collided");
         if(other.GetComponent<PlayerMove>())
         {
 
-            print("player in sight collider");
+            //print("player in sight collider");
             RaycastHit hit;
             
             Vector3 rayDirection = other.transform.position - eye.transform.position;
@@ -28,7 +28,8 @@ public class EnemyEyesCollider : MonoBehaviour
                 }
                 else
                 {
-                    print("player obstructed");
+                    //print("player obstructed");
+                    //start lost track of player countdown
                 }
             }
         }
