@@ -43,7 +43,6 @@ public class NavMeshPatrol : MonoBehaviour
             if (Vector3.Distance(nma.destination, transform.position) < stoppingDistance)
             {
                 hasDest = false;
-                //print("Reached Destination");
             }
             yield return null;
         }
@@ -52,7 +51,6 @@ public class NavMeshPatrol : MonoBehaviour
     public GameObject SetDestination()
     {
         int rand = Random.Range(0, patrolPoints.Count);
-        print(rand);
         hasDest = true;
         return patrolPoints[rand];
     }
