@@ -16,22 +16,28 @@ public class OrbitingCameraController : MonoBehaviour
     public float yMinLimit = -20f;
     public float yMaxLimit = 80f;
  
-    private Rigidbody rigidbody;
- 
     float x = 0.0f;
     float y = 0.0f;
+
+    public bool canOrbit;
  
-    // Use this for initialization
     void Start () 
     {
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
+        StartOrbit();
+    }
+
+    public void StartOrbit()
+    {
+        canOrbit = true;
+        StartCoroutine(Orbit());
     }
  
-    void LateUpdate () 
+    IEnumerator Orbit () 
     {
-        if (target) 
+        while(canOrbit) 
         {
             x += inputManager.GetHorizontal2();
             y -= inputManager.GetVertical2();
@@ -45,6 +51,8 @@ public class OrbitingCameraController : MonoBehaviour
  
             transform.rotation = rotation;
             transform.position = position;
+
+            yield return null;
         }
     }
  

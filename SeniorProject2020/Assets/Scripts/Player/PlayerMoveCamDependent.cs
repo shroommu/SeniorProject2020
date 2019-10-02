@@ -1,93 +1,83 @@
-﻿// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-// public class PlayerMoveCamDependent : MonoBehaviour
-// {
-//     public bool canMove = true;
+public class PlayerMoveCamDependent : MonoBehaviour
+{
+    public bool canMove = true;
+	
+	public float speed = 1;
+	private float baseSpeed;
+	public float jumpSpeed = 1;
 
-// 	public float velocity = 0;
+    public GameObject orbitCamera;
 
-// 	public float speed = 1;
-// 	private float baseSpeed;
-// 	public float jumpSpeed = 1;
+	//private PlayerAnim playerAnim;
+	public Rigidbody rb;
+    public InputManager inputManager;
 
-// 	public bool isJumping = false;
-// 	public bool isGrounded = true;
+	void Start ()
+	{
+		baseSpeed = speed;
+		//playerAnim = GetComponent<PlayerAnim>();
+		//rb = GetComponent<Rigidbody>();
+		StartCoroutine(Move());
+	}
 
-//     public GameObject camera;
+	IEnumerator Move()
+    {
+        while(canMove)
+        {
+            //calculate new transform.position
+            Vector3 newPos = Vector3.Normalize(new Vector3(inputManager.GetHorizontal(), 0, inputManager.GetVertical()));
+            newPos = orbitCamera.transform.TransformDirection(newPos);
+            newPos.y = 0;
 
-// 	//private PlayerAnim playerAnim;
-// 	private Rigidbody rigidbody;
+            //move to new position
+            rb.AddForce(newPos * speed);
 
-// 	void Start ()
-// 	{
-// 		baseSpeed = speed;
-// 		//playerAnim = GetComponent<PlayerAnim>();
-// 		rigidbody = GetComponent<Rigidbody>();
-// 		StartCoroutine(Move());
-// 	}
+            if(rb.velocity.magnitude > 0.1)
+            {
+                transform.forward = orbitCamera.transform.forward;
+                Vector3 newRot = transform.rotation.eulerAngles;
+                newRot.x = 0;
+                transform.rotation = Quaternion.Euler(newRot);
+                //playerAnim.Walk();
+            }
+            if(speed > baseSpeed)
+            {
+                //playerAnim.Run();
+            }
 
-// 	IEnumerator Move()
-// 	{
-// 		while(canMove)
-// 		{
-// 			//calculate new transform.position
-// 			Vector3 newPos = Vector3.Normalize(new Vector3(InputManager.instance.GetHorizontal(), 0, InputManager.instance.GetVertical())) * speed;
-//             //print (newPos);
+            //Resets velocity to 0 each frame so character doesn't slide around
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
 
-// 			//rotate character
-// 			if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-// 			{
-// 				transform.rotation = Quaternion.LookRotation(newPos);
-// 			}
-// 			else
-// 			{
-// 				//playerAnim.Idle();
-// 			}
+            yield return null;
+        }
+    }
 
-// 			//move to new position
-// 			rigidbody.AddForce(newPos);
+	public void ChangeToSprintSpeed()
+	{
+		speed = baseSpeed * 2;
+	}
 
-// 			if(rigidbody.velocity.magnitude > 0.1)
-// 			{
-// 				//playerAnim.Walk();
-// 			}
-// 			if(speed > baseSpeed)
-// 			{
-// 				//playerAnim.Run();
-// 			}
+	public void ChangeToRegularSpeed()
+	{
+		speed = baseSpeed;
+	}
 
-//             //Resets velocity to 0 each frame so character doesn't slide around
-//             rigidbody.velocity = new Vector3(0, rigidbody.velocity.y, 0);
+	public void Jump()
+	{
+		if(inputManager.isGrounded)
+		{
+			rb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
+			inputManager.isGrounded = false;
+			//playerAnim.Jump();
+		}
+	}
 
-// 			yield return null;
-// 		}
-// 	}
-
-// 	public void ChangeToSprintSpeed()
-// 	{
-// 		speed = baseSpeed * 2;
-// 	}
-
-// 	public void ChangeToRegularSpeed()
-// 	{
-// 		speed = baseSpeed;
-// 	}
-
-// 	public void Jump()
-// 	{
-// 		if(isGrounded)
-// 		{
-// 			rigidbody.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
-// 			isGrounded = false;
-// 			//playerAnim.Jump();
-// 		}
-// 	}
-
-// 	void OnCollisionStay(Collision other)
-// 	{
-// 		isGrounded = true;
-// 		isJumping = false;
-// 	}
-// }
+	void OnCollisionStay(Collision other)
+	{
+		inputManager.isGrounded = true;
+	}
+}

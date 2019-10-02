@@ -13,14 +13,28 @@ public class InputManager : MonoBehaviour {
 	private float horizontalSpeed = 0;
 	private float vertical2Speed = 0;
 	private float horizontal2Speed = 0;
+	private float triggerSpeed = 0;
+
+	public float cameraSensitivity = 1;
+
+	public bool l3pressed = false;
+	public bool xButtonPressed = false;
+	public bool rightTriggerDown = false;
+	public bool leftTriggerDown = false;
+
+	public bool isGrounded = true;
 
 	private bool canGetInput = true;
 
-	public GameEvent lmbEvent;
-	public GameEvent rmbEvent;
-	public GameEvent leftShiftEvent;
-	public GameEvent leftShiftUpEvent;
-	public GameEvent spaceDownEvent;
+	public UnityEvent attack1Event;
+	public UnityEvent jumpAttack;
+	public UnityEvent sprintEvent;
+	public UnityEvent walkEvent;
+	public UnityEvent jumpEvent;
+	public UnityEvent leftTriggerDownEvent;
+	public UnityEvent rightTriggerDownEvent;
+	public UnityEvent leftTriggerUpEvent;
+	public UnityEvent rightTriggerUpEvent;
 
 	
 	void Start()
@@ -34,31 +48,110 @@ public class InputManager : MonoBehaviour {
 		{
 			horizontalSpeed = Input.GetAxis(currentInputType.leftJoystickXName);
 			verticalSpeed = Input.GetAxis(currentInputType.leftJoystickYName);
-			horizontal2Speed = Input.GetAxis(currentInputType.rightJoystickXName);
-			vertical2Speed = Input.GetAxis(currentInputType.rightJoystickYName);
+			horizontal2Speed = Input.GetAxis(currentInputType.rightJoystickXName) * cameraSensitivity;
+			vertical2Speed = Input.GetAxis(currentInputType.rightJoystickYName) * cameraSensitivity;
 
-			if(Input.GetMouseButtonDown(0))
+			if(currentInputType.inputName != "Keyboard")
 			{
-				lmbEvent.Raise();
+				triggerSpeed = Input.GetAxis(currentInputType.triggersName);
 			}
 
-			if(Input.GetMouseButtonDown(1))
+			if(Input.GetButtonDown(currentInputType.bButtonName))
 			{
-				rmbEvent.Raise();
+				if(isGrounded)
+				{
+					attack1Event.Invoke();
+				}
+				else
+				{
+					jumpAttack.Invoke();
+				}
 			}
 
-			if(Input.GetKey(KeyCode.LeftShift))
+			if(currentInputType.inputName == "Keyboard")
 			{
-				leftShiftEvent.Raise();
+				if(Input.GetButtonDown(currentInputType.leftClickName))
+				{
+					if(isGrounded)
+					{
+						leftTriggerDownEvent.Invoke();
+					}
+					else
+					{
+						jumpAttack.Invoke();
+					}
+				}
+				
+				if(Input.GetButtonDown(currentInputType.rightClickName))
+				{
+					rightTriggerDownEvent.Invoke();
+				}
+				
+				if(Input.GetButtonUp(currentInputType.leftClickName))
+				{
+					leftTriggerUpEvent.Invoke();
+				}
+				
+				if(Input.GetButtonUp(currentInputType.rightClickName))
+				{
+					rightTriggerUpEvent.Invoke();
+				}
 			}
-			if(Input.GetKeyUp(KeyCode.LeftShift))
+			else
 			{
-				leftShiftUpEvent.Raise();
+				if(GetTriggerSpeed() < 0)
+				{
+					leftTriggerDown = true;
+					
+					if(isGrounded)
+					{
+						leftTriggerDownEvent.Invoke();
+					}
+					else
+					{
+						jumpAttack.Invoke();
+					}
+				}
+				
+				if(GetTriggerSpeed() > 0)
+				{
+					rightTriggerDown = true;
+					rightTriggerDownEvent.Invoke();
+				}
+
+				if(GetTriggerSpeed() == 0)
+				{
+					if(rightTriggerDown)
+					{
+						rightTriggerUpEvent.Invoke();
+						rightTriggerDown = false;
+					}
+					if(leftTriggerDown)
+					{
+						leftTriggerUpEvent.Invoke();
+						leftTriggerDown = false;
+					}				
+				}
+			}
+			
+			if(Input.GetButtonDown(currentInputType.l3ButtonName))
+			{
+				l3pressed = !l3pressed;
+
+				if(l3pressed)
+				{
+					sprintEvent.Invoke();
+				}
+				else
+				{
+					walkEvent.Invoke();
+				}
+				
 			}
 
 			if(Input.GetButton(currentInputType.aButtonName))
 			{
-				spaceDownEvent.Raise();
+				jumpEvent.Invoke();
 			}
 
 			yield return null;
@@ -83,5 +176,10 @@ public class InputManager : MonoBehaviour {
 	public float GetHorizontal2()
 	{
 		return horizontal2Speed;
+	}
+
+	public float GetTriggerSpeed()
+	{
+		return triggerSpeed;
 	}
 }

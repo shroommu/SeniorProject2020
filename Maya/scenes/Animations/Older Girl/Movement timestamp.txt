@@ -1,0 +1,4 @@
+1-idle ---- 3-119
+2-Walk ---- transition 122-125 --- walk 125-149
+3-Run ---- transition 153-156 --- run 156-172
+4-Jump ---- up 178-190 --- falling 190-210 --- land 210-220 --- get up 220-222

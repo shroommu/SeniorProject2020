@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ed99c19797fec4b8190c55fc8206c5, type: 3}
   m_Name: Player 2 Controller Input
   m_EditorClassIdentifier: 
+  inputName: Controller2
   leftJoystickXName: Con2 JoyL Horiz
   leftJoystickYName: Con2 JoyL Vert
   rightJoystickXName: Con2 JoyR Horiz
   rightJoystickYName: Con2 JoyR Vert
+  triggersName: Con2 Triggers
   aButtonName: Con2 A Button
+  bButtonName: Con2 B Button
+  xButtonName: Con2 X Button
+  l3ButtonName: Con2 L3 Button
