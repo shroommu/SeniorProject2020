@@ -43,6 +43,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< Updated upstream
     width: 1920
     height: 997
   m_MinSize: {x: 950, y: 444}
@@ -85,6 +86,7 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< Updated upstream
     y: 977
     width: 1920
     height: 20
@@ -136,6 +138,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< Updated upstream
     width: 1920
     height: 648
   m_MinSize: {x: 813, y: 272}
@@ -213,6 +216,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1409
     y: 0
+<<<<<<< Updated upstream
     width: 234
     height: 648
   m_MinSize: {x: 234, y: 272}
@@ -608,6 +612,15 @@ MonoBehaviour:
   - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\mould\Documents\SP2020\SeniorProject2020
+=======
+    - Assets
+  m_ViewMode: 1
+  m_StartGridSize: 64
+  m_LastFolders:
+  - Assets
+  m_LastFoldersGridSize: -1
+  m_LastProjectPath: F:\GIT\SeniorProject2020\SeniorProject2020
+>>>>>>> Stashed changes
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
@@ -669,7 +682,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -785,6 +798,7 @@ MonoBehaviour:
     width: 1920
     height: 280
   m_ViewDataDictionary: {fileID: 0}
+<<<<<<< Updated upstream
   m_ViewTransforms:
     m_KeySerializationHelper:
     - {fileID: -8360929185259284753, guid: e10852efb1de53748a3cfffa09442e26, type: 2}
@@ -866,6 +880,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< Updated upstream
   m_Script: {fileID: 12071, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -875,6 +890,16 @@ MonoBehaviour:
     m_Text: Animation
     m_Image: {fileID: 1561878555887300916, guid: 0000000000000000d000000000000000,
       type: 0}
+=======
+  m_Script: {fileID: 12059, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEditor:UnityEditor.Experimental.TerrainAPI:SetHeightTool
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Failed to load
+    m_Image: {fileID: 0}
+>>>>>>> Stashed changes
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
