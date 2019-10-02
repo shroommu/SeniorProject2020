@@ -52078,7 +52078,6 @@ GameObject:
   - component: {fileID: 1385958850}
   - component: {fileID: 1385958849}
   - component: {fileID: 1385958848}
-  - component: {fileID: 1385958847}
   - component: {fileID: 1385958856}
   - component: {fileID: 1385958846}
   - component: {fileID: 1385958853}
@@ -52111,25 +52110,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1385958847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1385958845}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef033d9ba4a0ffd4b8ad22826479d62d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canMove: 1
-  velocity: 0
-  speed: 250
-  jumpSpeed: 3
-  orbitCamera: {fileID: 1284613244}
-  rb: {fileID: 1385958846}
-  inputManager: {fileID: 8634748413650461382}
 --- !u!136 &1385958848
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -52137,7 +52117,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385958845}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7551b5acce361fb41a6446b4f705a006, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.25
@@ -83814,7 +83794,7 @@ GameObject:
   - component: {fileID: 2113128450}
   - component: {fileID: 2113128449}
   - component: {fileID: 2113128448}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96530,7 +96510,7 @@ MonoBehaviour:
   sprintEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1385958847}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeToSprintSpeed
         m_Mode: 1
         m_Arguments:
@@ -96557,7 +96537,7 @@ MonoBehaviour:
   walkEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1385958847}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeToRegularSpeed
         m_Mode: 1
         m_Arguments:
@@ -96584,17 +96564,6 @@ MonoBehaviour:
   jumpEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1385958847}
-        m_MethodName: Jump
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1385958856}
         m_MethodName: Jump
         m_Mode: 1

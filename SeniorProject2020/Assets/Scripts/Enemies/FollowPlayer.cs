@@ -32,7 +32,6 @@ public class FollowPlayer : MonoBehaviour
     {
         while(canFollow)
         {
-            print("following");
             nma.destination = currentTarget.transform.position;
             yield return null;
         }
