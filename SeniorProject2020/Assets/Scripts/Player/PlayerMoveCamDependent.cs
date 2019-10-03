@@ -31,7 +31,6 @@ public class PlayerMoveCamDependent : MonoBehaviour
 
 			//groundcheck
          	inputManager.isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f, 1 << LayerMask.NameToLayer("Ground"));
-			print(inputManager.isGrounded);
 
             //calculate new transform.position
             Vector3 newPos = Vector3.Normalize(new Vector3(inputManager.GetHorizontal(), 0, inputManager.GetVertical()));
