@@ -10,7 +10,7 @@ public class EnemyEyesCollider : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         //print("collided");
-        if(other.GetComponent<PlayerMove>())
+        if(other.GetComponent<PlayerData>())
         {
 
             //print("player in sight collider");
@@ -22,7 +22,7 @@ public class EnemyEyesCollider : MonoBehaviour
 
             if(Physics.Raycast(eye.transform.position, rayDirection, out hit, Mathf.Infinity))
             {
-                if(hit.collider.gameObject.GetComponent<PlayerMove>())
+                if(hit.collider.gameObject.GetComponent<PlayerData>())
                 {
                     aiController.SawPlayer(other.gameObject);
                 }
