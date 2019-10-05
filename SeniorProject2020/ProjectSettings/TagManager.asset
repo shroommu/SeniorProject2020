@@ -23,8 +23,8 @@ TagManager:
   - Player2
   - Weapons
   - Enemies
-  - 
-  - 
+  - HitBox
+  - Ground
   - 
   - 
   - 

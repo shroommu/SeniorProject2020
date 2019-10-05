@@ -80,6 +80,7 @@ public class PlayerMove : MonoBehaviour {
 	{
 		if(inputManager.isGrounded)
 		{
+			print("Jumping");
 			rb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
 			inputManager.isGrounded = false;
 			//playerAnim.Jump();

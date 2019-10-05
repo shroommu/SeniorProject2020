@@ -28,6 +28,10 @@ public class PlayerMoveCamDependent : MonoBehaviour
     {
         while(canMove)
         {
+
+			//groundcheck
+         	inputManager.isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f, 1 << LayerMask.NameToLayer("Ground"));
+
             //calculate new transform.position
             Vector3 newPos = Vector3.Normalize(new Vector3(inputManager.GetHorizontal(), 0, inputManager.GetVertical()));
             newPos = orbitCamera.transform.TransformDirection(newPos);
@@ -71,13 +75,7 @@ public class PlayerMoveCamDependent : MonoBehaviour
 		if(inputManager.isGrounded)
 		{
 			rb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
-			inputManager.isGrounded = false;
-			//playerAnim.Jump();
+			print("jumping");
 		}
-	}
-
-	void OnCollisionStay(Collision other)
-	{
-		inputManager.isGrounded = true;
 	}
 }
