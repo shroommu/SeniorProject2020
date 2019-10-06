@@ -1873,6 +1873,7 @@ GameObject:
   - component: {fileID: 1213723561}
   - component: {fileID: 1213723554}
   - component: {fileID: 1213723562}
+  - component: {fileID: 1213723563}
   m_Layer: 13
   m_Name: Practice Dummy
   m_TagString: Untagged
@@ -2134,6 +2135,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93d1aac85d1af845aecaaf96621b611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1213723563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213723547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8fa176f72029f4285e6aa4d7c692d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyPS: {fileID: 3426210806820032977, guid: a7a29976f73de7848a5a547f684b7d0e,
+    type: 3}
 --- !u!1 &1254407014 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: a5b1fd2a60ae94540a767c0eb473e31c,
