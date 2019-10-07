@@ -16,7 +16,7 @@ public class HurtboxManager : MonoBehaviour
         print("enabling hurtboxes");
         foreach (GameObject hurtbox in hurtboxes)
         {
-            hurtbox.GetComponent<Hurtbox>().enabled = true;
+            hurtbox.GetComponent<Collider>().enabled = true;
         }
     }
 
@@ -25,7 +25,7 @@ public class HurtboxManager : MonoBehaviour
         print("disabling hurtboxes");
         foreach (GameObject hurtbox in hurtboxes)
         {
-            hurtbox.GetComponent<Hurtbox>().enabled = false;
+            hurtbox.GetComponent<Collider>().enabled = false;
         }
     }
 }
