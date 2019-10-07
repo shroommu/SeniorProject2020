@@ -62,6 +62,11 @@ public class AIController : MonoBehaviour
         anim.SetBool("knowsPlayerLocation", true);
     }
 
+    public void ResetKnowsPlayerLocation()
+    {
+        anim.SetBool("knowsPlayerLocation", false);
+    }
+
     public void RandomizeAttack()
     {
         int randAttack = Random.Range(1, numberOfAttacks + 1);
@@ -71,5 +76,15 @@ public class AIController : MonoBehaviour
     public void ResetAttackState()
     {
         anim.SetInteger("attackNum", 0);
+    }
+
+    public void Disengage()
+    {
+        anim.SetBool("disengage", true);
+    }
+
+    public void ResetDisengage()
+    {
+        anim.SetBool("disengage", false);
     }
 }

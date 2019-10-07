@@ -8,5 +8,6 @@ public class SMB_Patrol : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
        animator.GetComponent<NavMeshPatrol>().StartPatrol();
+       animator.GetComponent<AIController>().ResetDisengage();
     }
 }

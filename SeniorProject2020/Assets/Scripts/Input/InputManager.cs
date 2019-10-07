@@ -149,7 +149,7 @@ public class InputManager : MonoBehaviour {
 				
 			}
 
-			if(Input.GetButton(currentInputType.aButtonName))
+			if(Input.GetButtonDown(currentInputType.aButtonName))
 			{
 				jumpEvent.Invoke();
 			}
