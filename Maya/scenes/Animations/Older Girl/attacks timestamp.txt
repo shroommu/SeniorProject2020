@@ -1,5 +1,13 @@
-1-Spear jab 1 ---- 3-23
-2-Spear jab 2 ---- 25-40
-3-Spear jab 3 ---- 45-60
-4-Spear Throw ---- raise 65-78---idle 78-96 ---- throw 96-120
+1-Spear jab 1 ---- 3-18
+2-Spear jab 2 ---- 27-40
+3-Spear jab 3 ---- 47-60
+4-Spear Throw ---- raise 65-72---idle 72-93 ---- throw 93-120
 5-Spear Slam --- Jump 123-137 --- Stand 124-156
+
+
+Weighted Rig
+1-Spear jab 1 ---
+2-Spear jab 2 ---
+3-Spear jab 3 ---
+4-Spear Throw ---
+5-Spear Slam ---
