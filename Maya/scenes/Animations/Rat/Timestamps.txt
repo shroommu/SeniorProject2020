@@ -1,0 +1,6 @@
+Idle -- 2-82
+Walk -- Transition from idle --83-85, Walk -- 85-101
+Bite -- 105-115
+Hurt -- v1 -- 116-125, V2 -- 126-134
+Death -- -
+ 
