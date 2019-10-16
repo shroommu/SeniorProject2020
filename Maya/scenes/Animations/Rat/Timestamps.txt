@@ -2,5 +2,9 @@ Idle -- 2-82
 Walk -- Transition from idle --83-85, Walk -- 85-101
 Bite -- 105-115
 Hurt -- v1 -- 116-125, V2 -- 126-134
-Death -- -
- 
+Death -- 135-151
+Transformation -- 153-169
+
+*For the transformation, we'd just change the texture and make it
+run away if we want to do the transformation. I included a death
+animation in case we didn't want to do the transformation.
