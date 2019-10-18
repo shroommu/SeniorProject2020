@@ -130,7 +130,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 394}
   m_MaxSize: {x: 22012, y: 14044}
   vertical: 0
-  controlID: 141
+  controlID: 56
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1197,11 +1197,11 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/FX/Shaders
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/FX/Shaders
   m_LastFoldersGridSize: -1
 <<<<<<< HEAD
 <<<<<<< Updated upstream
@@ -1242,18 +1242,18 @@ MonoBehaviour:
 >>>>>>> master
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: TextureImages
-      m_OriginalName: TextureImages
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 13880
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
 <<<<<<< HEAD
 <<<<<<< Updated upstream
@@ -1506,23 +1506,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 50340000
+      m_SelectedIDs: 445f0000
       m_LastClickedID: 0
-      m_ExpandedIDs: f63dfeff1a9cfeff1af9ffff68f9ffff3cfbffff42fbffff4afbffff2c4c0000484c0000884e0000924f0000
+      m_ExpandedIDs: 4afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: GameObject
-        m_OriginalName: GameObject
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -91110
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 6}
       m_SearchString: 
@@ -1601,11 +1601,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.30799216, y: 0.064415604, z: -0.021070564, w: 0.9490633}
     speed: 2
-    m_Value: {x: 0.3079967, y: 0.06298647, z: -0.020606764, w: 0.9490765}
+    m_Value: {x: -0.30799216, y: -0.064415604, z: 0.021070564, w: -0.94906336}
   m_Size:
     m_Target: 41.486004
     speed: 2
-    m_Value: 43.44084
+    m_Value: 41.486004
   m_Ortho:
     m_Target: 0
     speed: 2
