@@ -1,5 +1,13 @@
 sceneSetups:
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+- path: Assets/Scenes/AlexaScene.unity
+=======
 - path: Assets/Scenes/AnnaWhitebox.unity
+>>>>>>> Stashed changes
+=======
+- path: Assets/Scenes/AnnaWhitebox.unity
+>>>>>>> master
   isLoaded: 1
   isActive: 1
   isSubScene: 0
